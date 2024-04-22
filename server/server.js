@@ -2,6 +2,8 @@ import "express-async-errors";
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import { notFound } from "./errors/notFound.js";
+import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
 
 dotenv.config();
 const app = express();
@@ -17,6 +19,8 @@ app.get("/api/v1", (req, res) => {
 // ROUTES
 
 // ERRORS
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
