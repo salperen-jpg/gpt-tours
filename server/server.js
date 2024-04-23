@@ -1,13 +1,17 @@
 import "express-async-errors";
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 import morgan from "morgan";
 import { notFound } from "./errors/notFound.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
 import { connectDB } from "./db/connectDB.js";
+import tourRoute from "./routes/tourRoute.js";
 
-dotenv.config();
 const app = express();
+
+// access body
+app.use(express.json());
 
 if ((process.env.NODE_ENV = "development")) app.use(morgan("dev"));
 
@@ -18,6 +22,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 // ROUTES
+app.use("/api/v1/tours", tourRoute);
 
 // ERRORS
 app.use(notFound);
