@@ -3,10 +3,13 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import morgan from "morgan";
+// middlewares
 import { notFound } from "./errors/notFound.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
 import { connectDB } from "./db/connectDB.js";
+// routes
 import tourRoute from "./routes/tourRoute.js";
+import userRoute from "./routes/authRoute.js";
 
 const app = express();
 
@@ -22,6 +25,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 // ROUTES
+app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/tours", tourRoute);
 
 // ERRORS
