@@ -3,10 +3,12 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import morgan from "morgan";
+import { connectDB } from "./db/connectDB.js";
+import cookieParser from "cookie-parser";
 // middlewares
 import { notFound } from "./errors/notFound.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
-import { connectDB } from "./db/connectDB.js";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
 // routes
 import tourRoute from "./routes/tourRoute.js";
 import userRoute from "./routes/authRoute.js";
@@ -15,6 +17,8 @@ const app = express();
 
 // access body
 app.use(express.json());
+// others
+app.use(cookieParser());
 
 if ((process.env.NODE_ENV = "development")) app.use(morgan("dev"));
 
@@ -26,7 +30,7 @@ app.get("/api/v1", (req, res) => {
 
 // ROUTES
 app.use("/api/v1/auth", userRoute);
-app.use("/api/v1/tours", tourRoute);
+app.use("/api/v1/tours", authMiddleware, tourRoute);
 
 // ERRORS
 app.use(notFound);
