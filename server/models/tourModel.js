@@ -6,6 +6,10 @@ const tourSchema = new mongoose.Schema(
     country: String,
     title: String,
     description: String,
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
     image: {
       type: String,
       required: false,

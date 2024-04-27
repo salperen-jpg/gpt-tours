@@ -3,12 +3,13 @@ import { StatusCodes } from "http-status-codes";
 
 // GET TOURS
 const getAllTours = async (req, res) => {
-  const tours = await Tour.find({});
+  const tours = await Tour.find({ createdBy: req.user.userId });
   res.status(StatusCodes.OK).json({ tours });
 };
 
 // POST TOUR
 const createTour = async (req, res) => {
+  req.body.createdBy = req.user.userId;
   await Tour.create(req.body);
   res.status(StatusCodes.CREATED).json({ msg: "Created successfully!" });
 };
