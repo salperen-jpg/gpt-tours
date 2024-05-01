@@ -11,7 +11,8 @@ import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js"
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 // routes
 import tourRoute from "./routes/tourRoute.js";
-import userRoute from "./routes/authRoute.js";
+import authRoute from "./routes/authRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 const app = express();
 
@@ -29,8 +30,9 @@ app.get("/api/v1", (req, res) => {
 });
 
 // ROUTES
-app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/tours", authMiddleware, tourRoute);
+app.use("/api/v1/user", authMiddleware, userRoute);
 
 // ERRORS
 app.use(notFound);
