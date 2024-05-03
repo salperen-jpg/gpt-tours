@@ -6,10 +6,19 @@ import {
   getTour,
   updateTour,
 } from "../controllers/tourController.js";
+import {
+  createTourValidator,
+  updateTourValidator,
+  validateIdParam,
+} from "../middlewares/validatorMiddleware.js";
 
 const router = Router();
 
-router.route("/").get(getAllTours).post(createTour);
-router.route("/:id").get(getTour).patch(updateTour).delete(deleteTour);
+router.route("/").get(getAllTours).post(createTourValidator, createTour);
+router
+  .route("/:id")
+  .get(validateIdParam, getTour)
+  .patch(updateTourValidator, validateIdParam, updateTour)
+  .delete(validateIdParam, deleteTour);
 
 export default router;
