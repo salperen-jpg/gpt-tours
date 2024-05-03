@@ -17,5 +17,5 @@ export const updateUser = async (req, res) => {
   // delete user password just in case
   delete user.password;
   const updatedUser = await User.findByIdAndUpdate(req.user.userId, user);
-  res.status(StatusCodes.OK).json({ msg: "user updated!", user: newUser });
+  res.status(StatusCodes.OK).json({ msg: "user updated!", user: updatedUser });
 };
