@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "npm i && cd ../client && npm i",
+    "startClient": "cd ../client && npm run dev",
+    "start": "conc \"npm run dev\" \"npm run startClient\""
   },
   "keywords": [],
   "author": "",
