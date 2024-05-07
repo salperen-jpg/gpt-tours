@@ -1,10 +1,45 @@
-import { Button } from "./components/ui/button";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Landing,
+  Login,
+  Register,
+  SharedLayout,
+  SingleTour,
+  Tours,
+} from "./pages";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "register",
+      element: <Register />,
+    },
+    {
+      path: "login",
+      element: <Login />,
+    },
+    {
+      path: "/",
+      element: <Landing />,
+    },
+    {
+      path: "dashboard",
+      element: <SharedLayout />,
+      children: [
+        {
+          path: "tours",
+          element: <Tours />,
+        },
+        {
+          path: "tours/:id",
+          element: <SingleTour />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <h1 className="text-7xl">Hi there!</h1>
-      <Button type="button">click me!</Button>
+      <RouterProvider router={router} />
     </>
   );
 }
