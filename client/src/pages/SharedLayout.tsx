@@ -34,7 +34,9 @@ const getLocalStorage = (): Theme => {
     : "light";
 };
 
-const SharedLayout = () => {
+export const DashboardContextProvider = ({
+  children,
+}: DashboardContextProps) => {
   const [theme, setTheme] = useState<Theme>(getLocalStorage());
 
   const changeTheme = (theme: Theme) => {
@@ -61,15 +63,23 @@ const SharedLayout = () => {
 
   return (
     <DashboardContext.Provider value={{ theme, setTheme, changeTheme }}>
-      <Navbar />
-      <section className="align-element py-20">
-        <Outlet />
-      </section>
+      {children}
     </DashboardContext.Provider>
   );
 };
-export default SharedLayout;
 
 export const useDashboardContext = (): DashboardContextState => {
   return useContext(DashboardContext);
 };
+
+const SharedLayout = () => {
+  return (
+    <>
+      <Navbar />
+      <section className="align-element py-20">
+        <Outlet />
+      </section>
+    </>
+  );
+};
+export default SharedLayout;
