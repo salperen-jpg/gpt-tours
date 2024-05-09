@@ -22,6 +22,12 @@ const Error = () => {
       </main>
     );
   }
-  return <div>Error</div>;
+  return (
+    <main className="min-h-[100vh] grid place-items-center">
+      <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 text-primary">
+        something went wrong
+      </h1>
+    </main>
+  );
 };
 export default Error;
