@@ -14,6 +14,8 @@ import {
 // actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+// loader
+import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +40,7 @@ function App() {
       path: "dashboard",
       element: <SharedLayout />,
       errorElement: <Error />,
+      loader: sharedLayoutLoader,
       children: [
         {
           index: true,
