@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { useDashboardContext } from "@/pages/SharedLayout";
+import { useDashboardContext } from "@/context";
 
 const ThemeToggle = () => {
   const { changeTheme } = useDashboardContext();

@@ -1,3 +1,4 @@
+import { User } from "@/utils";
 import {
   Logo,
   NavLinksDropDown,
@@ -6,7 +7,11 @@ import {
   UserContainer,
 } from ".";
 
-const Navbar = () => {
+export type NavbarProps = {
+  user: User;
+};
+
+const Navbar = ({ user }: NavbarProps) => {
   return (
     <nav className="bg-muted py-4">
       <div className="align-element flex items-center justify-between">
@@ -15,7 +20,7 @@ const Navbar = () => {
         <NavbarLinks />
         <div className="flex items-center gap-x-4">
           <ThemeToggle />
-          <UserContainer />
+          <UserContainer user={user} />
         </div>
       </div>
     </nav>
