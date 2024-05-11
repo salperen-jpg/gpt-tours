@@ -6,7 +6,9 @@ import { customFetch } from "@/utils";
 import { AxiosError } from "axios";
 import { ActionFunction, Form, redirect } from "react-router-dom";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async ({
+  request,
+}): Promise<Response | null> => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
@@ -19,8 +21,8 @@ export const action: ActionFunction = async ({ request }) => {
         ? error.response?.data.msg
         : "registration failed!";
     toast({ description: errorMessage });
+    return null;
   }
-  return null;
 };
 
 const Register = () => {
