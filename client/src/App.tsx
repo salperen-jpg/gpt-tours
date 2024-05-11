@@ -1,4 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+// pages
 import {
   Error,
   Landing,
@@ -9,13 +11,15 @@ import {
   SingleTour,
   Tours,
 } from "./pages";
-
+// actions
+import { action as registerAction } from "./pages/Register";
 function App() {
   const router = createBrowserRouter([
     {
       path: "register",
       element: <Register />,
       errorElement: <Error />,
+      action: registerAction,
     },
     {
       path: "login",
@@ -50,6 +54,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <Toaster />
     </>
   );
 }
