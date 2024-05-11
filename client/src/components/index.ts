@@ -4,3 +4,4 @@ export { default as NavbarLinks } from "./NavbarLinks";
 export { default as NavLinksDropDown } from "./NavLinksDropDown";
 export { default as ThemeToggle } from "./ThemeToggle";
 export { default as UserContainer } from "./UserContainer";
+export { default as FormInput } from "./FormInput";
