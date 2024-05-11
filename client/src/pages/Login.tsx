@@ -6,8 +6,19 @@ import { customFetch } from "@/utils";
 import { AxiosError } from "axios";
 import { ActionFunction, Form, redirect } from "react-router-dom";
 
-export const action = async () => {
-  return null;
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    await customFetch.post("/auth/login", data);
+    toast({ description: "Logged in!" });
+    return redirect("/dashboard");
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError ? error.response?.data.msg : "Login failed!";
+    toast({ description: errorMessage });
+    return null;
+  }
 };
 
 const Login = () => {

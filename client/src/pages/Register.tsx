@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({
   try {
     await customFetch.post("/auth/register", data);
     toast({ description: "Registered successfully!" });
-    return redirect("/dashboard");
+    return redirect("/login");
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
