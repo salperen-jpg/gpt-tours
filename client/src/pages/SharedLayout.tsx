@@ -7,7 +7,6 @@ import { Outlet, redirect, useLoaderData } from "react-router-dom";
 export const loader = async (): Promise<User | Response> => {
   try {
     const { data } = await customFetch("/user/currentUser");
-    console.log(data.user);
     return data.user;
   } catch (error) {
     const errorMessage =
