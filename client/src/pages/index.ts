@@ -6,3 +6,5 @@ export { default as Register } from "./Register";
 export { default as SingleTour } from "./SingleTour";
 export { default as Tours } from "./Tours";
 export { default as SharedLayout } from "./SharedLayout";
+export { default as Chat } from "./Chat";
+export { default as NewTour } from "./NewTour";
