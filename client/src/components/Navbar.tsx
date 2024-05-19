@@ -13,8 +13,8 @@ export type NavbarProps = {
 
 const Navbar = ({ user }: NavbarProps) => {
   return (
-    <nav className="bg-muted py-4">
-      <div className="align-element flex items-center justify-between">
+    <nav className="bg-muted py-4 h-20 grid align-center">
+      <div className="align-element flex items-center justify-between w-full">
         <Logo />
         <NavLinksDropDown />
         <NavbarLinks />
