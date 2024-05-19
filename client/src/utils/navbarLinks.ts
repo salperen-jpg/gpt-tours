@@ -14,6 +14,11 @@ export const links: Link[] = [
   },
   {
     id: nanoid(),
+    path: "./tours/newTour",
+    label: "new tour",
+  },
+  {
+    id: nanoid(),
     path: "profile",
     label: "profile",
   },
