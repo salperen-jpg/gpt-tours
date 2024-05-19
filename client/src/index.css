@@ -63,3 +63,7 @@
     @apply bg-background text-foreground;
   }
 }
+.scroll-bar-chat {
+  scrollbar-color: rgba(127, 17, 224, 1) transparent;
+  scrollbar-width: thin;
+}
