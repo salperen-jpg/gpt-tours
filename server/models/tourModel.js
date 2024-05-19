@@ -14,6 +14,7 @@ const tourSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    stops: [String],
   },
   {
     timestamps: true,

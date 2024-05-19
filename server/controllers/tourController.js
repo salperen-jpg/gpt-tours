@@ -35,4 +35,16 @@ const deleteTour = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Deleted successfully!" });
 };
 
+export const getTourByCityAndCountry = async (req, res) => {
+  console.log("correct placement!");
+  const { city, country } = req.params;
+  const tour = await Tour.findOne({ city, country });
+  console.log(tour);
+  if (tour) {
+    res.status(StatusCodes.OK).json({ tour });
+    return;
+  }
+  res.status(StatusCodes.OK).json({ tour: null });
+};
+
 export { getAllTours, createTour, getTour, updateTour, deleteTour };
