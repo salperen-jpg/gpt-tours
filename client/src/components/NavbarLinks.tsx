@@ -9,9 +9,11 @@ const NavbarLinks = () => {
           <NavLink
             to={link.path}
             key={link.id}
-            className={({ isActive }) =>
-              `capitalize w-full ${isActive ? "text-primary" : ""}`
-            }
+            className={({ isActive }) => {
+              return `capitalize font-light tracking-wide ${
+                isActive ? "text-primary" : ""
+              }`;
+            }}
           >
             {link.label}
           </NavLink>
