@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
 import { customFetch } from "@/utils";
 import { AxiosError } from "axios";
-import { ActionFunction, Form, redirect } from "react-router-dom";
+import { ActionFunction, Form, Link, redirect } from "react-router-dom";
 
 export const action: ActionFunction = async ({
   request,
@@ -45,6 +45,12 @@ const Register = () => {
               <Button className="w-full">Register</Button>
             </div>
           </Form>
+          <span className="mt-4 flex justify-end gap-x-2 text-sm">
+            you already have an account?
+            <Link to="/login" className="text-primary capitalize">
+              login
+            </Link>
+          </span>
         </CardContent>
       </Card>
       {/* </Form> */}
