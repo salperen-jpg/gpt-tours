@@ -5,6 +5,7 @@ import {
   Error,
   Landing,
   Login,
+  NewTour,
   Profile,
   Register,
   SharedLayout,
@@ -14,6 +15,7 @@ import {
 // actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+import { action as newTourAction } from "./pages/NewTour";
 // loader
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 
@@ -45,6 +47,11 @@ function App() {
         {
           index: true,
           element: <Tours />,
+        },
+        {
+          path: "tours/newTour",
+          element: <NewTour />,
+          action: newTourAction,
         },
         {
           path: "tours/:id",
