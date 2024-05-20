@@ -12,10 +12,10 @@ const LoadingSkeletonNewTour = () => {
           <ul>
             {Array(3)
               .fill(1)
-              .map((act) => {
+              .map((_, index) => {
                 return (
                   <Skeleton
-                    key={act}
+                    key={index}
                     className="flex items-center gap-x-4 mb-4"
                   >
                     <Skeleton className=" h-16 w-16" />
