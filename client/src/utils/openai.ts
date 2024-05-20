@@ -38,7 +38,7 @@ export const createNewTour = async ({
   country,
 }: CityCountryParam): Promise<Tour | null> => {
   const tourPrompt = `Find a exact ${city} in this exact ${country}.
-If ${city} and ${country} exist, create a list of things families can do in this ${city},${country}. 
+If ${city} and ${country} exist, create a list of things couples or families can do in this ${city},${country}. 
 Once you have a list, create a one-day tour. Response should be  in the following JSON format: 
 {
   "tour": {
@@ -46,7 +46,7 @@ Once you have a list, create a one-day tour. Response should be  in the followin
     "country": "${country}",
     "title": "title of the tour",
     "description": "short description of the city and tour",
-    "stops": ["stop name", "stop name","stop name"]
+    "stops": ["stop name and some information", "stop name and some information","stop name and some information"]
   }
 }
 "stops" property should include only three stops.
