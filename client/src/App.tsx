@@ -18,6 +18,7 @@ import { action as loginAction } from "./pages/Login";
 import { action as newTourAction } from "./pages/NewTour";
 // loader
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
+import { loader, loader as toursLoader } from "./pages/Tours";
 
 function App() {
   const router = createBrowserRouter([
@@ -47,6 +48,7 @@ function App() {
         {
           index: true,
           element: <Tours />,
+          loader: toursLoader,
         },
         {
           path: "tours/newTour",
