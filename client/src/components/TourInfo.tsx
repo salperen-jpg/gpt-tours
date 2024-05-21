@@ -1,4 +1,4 @@
-import { Tour, TourResponse } from "@/utils";
+import { TourResponse } from "@/utils";
 import { MdTour } from "react-icons/md";
 
 type TourInfoProps = {
@@ -29,7 +29,7 @@ const TourInfo = ({ tourInfo }: TourInfoProps) => {
               {stops.map((act) => {
                 return (
                   <li key={act} className="flex items-center gap-x-4 mb-4">
-                    <MdTour className="text-green-500 size-16" />
+                    <MdTour className="text-green-500 w-8 h-8" />
                     <span>{act}</span>
                   </li>
                 );
