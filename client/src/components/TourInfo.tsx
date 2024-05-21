@@ -1,12 +1,15 @@
 import { TourResponse } from "@/utils";
 import { MdTour } from "react-icons/md";
+import { Button } from "./ui/button";
+import { Form } from "react-router-dom";
 
 type TourInfoProps = {
   tourInfo: TourResponse;
+  isComingFromSingleTourPage?: boolean;
 };
 
-const TourInfo = ({ tourInfo }: TourInfoProps) => {
-  const { city, description, stops, title, country, image } = tourInfo;
+const TourInfo = ({ tourInfo, isComingFromSingleTourPage }: TourInfoProps) => {
+  const { _id, city, description, stops, title, country, image } = tourInfo;
   return (
     <>
       <h1 className="mb-8 text-primary text-2xl tracking-wide">
@@ -38,6 +41,17 @@ const TourInfo = ({ tourInfo }: TourInfoProps) => {
           </div>
         </div>
       </section>
+      {isComingFromSingleTourPage && (
+        <Form
+          method="POST"
+          action={`../tours/deleteTour/${_id}`}
+          className="mt-8 flex justify-end "
+        >
+          <Button type="submit" className="bg-red-400 hover:bg-red-600">
+            Remove Tour
+          </Button>
+        </Form>
+      )}
     </>
   );
 };

@@ -29,7 +29,7 @@ const SingleTour = () => {
   const tour = useLoaderData() as TourResponse;
   return (
     <>
-      <TourInfo tourInfo={tour} />
+      <TourInfo tourInfo={tour} isComingFromSingleTourPage />
     </>
   );
 };
