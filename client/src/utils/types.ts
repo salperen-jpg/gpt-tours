@@ -1,4 +1,4 @@
-export type User = {
+export type UserResponse = {
   _id: string;
   name: string;
   email: string;
@@ -28,3 +28,9 @@ export type TourResponse = {
   updatedAt: string;
   __v: number;
 } & Tour;
+
+export type User = {
+  email: string;
+  name: string;
+  role: string;
+};

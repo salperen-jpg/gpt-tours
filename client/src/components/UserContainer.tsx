@@ -1,4 +1,3 @@
-import { User } from "@/utils";
 import { NavbarProps } from "./Navbar";
 import { FaUserCircle } from "react-icons/fa";
 import {
@@ -9,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
 
-const UserContainer = ({ user }: NavbarProps) => {
+const UserContainer = ({ user, logout }: NavbarProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="flex gap-x-4">
@@ -21,9 +20,7 @@ const UserContainer = ({ user }: NavbarProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => console.log("light")}>
-          Logout
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
