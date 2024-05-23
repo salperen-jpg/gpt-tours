@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 // pages
 import {
+  Chat,
   Error,
   Landing,
   Login,
@@ -21,7 +22,10 @@ import { default as deleteTourAction } from "./pages/DeleteTour";
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
 import { loader as singleTourLoader } from "./pages/SingleTour";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 function App() {
+  const queryClient = new QueryClient();
+
   const router = createBrowserRouter([
     {
       path: "register",
@@ -52,6 +56,11 @@ function App() {
           loader: toursLoader,
         },
         {
+          path: "chat",
+          element: <Chat />,
+          loader: toursLoader,
+        },
+        {
           path: "tours/newTour",
           element: <NewTour />,
           action: newTourAction,
@@ -74,7 +83,9 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
       <Toaster />
     </>
   );
