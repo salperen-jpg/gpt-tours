@@ -6,7 +6,7 @@ const Profile = () => {
   console.log(something);
   return (
     <div>
-      <BreadCrumb />
+      <BreadCrumb currentPage="Profile" />
     </div>
   );
 };

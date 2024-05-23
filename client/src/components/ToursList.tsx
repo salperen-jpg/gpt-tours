@@ -1,4 +1,3 @@
-import { Tour } from "@/utils";
 import { Link, useLoaderData } from "react-router-dom";
 import {
   Card,
@@ -24,7 +23,7 @@ const ToursList = () => {
                 <img
                   src={image}
                   alt={country}
-                  className="h-[17rem] object-cover"
+                  className="h-[17rem] object-cover rounded-lg"
                 />
               )}
               <CardTitle className="block text-primary">
