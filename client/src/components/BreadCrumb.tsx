@@ -1,52 +1,50 @@
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 type BreadCrumb = {
-  currentPage: string;
+  currentPage?: string;
+  isSingleTourPage?: boolean;
+  tourName?: string;
 };
 
-const BreadCrumb = ({ currentPage }: BreadCrumb) => {
+const BreadCrumb = ({
+  currentPage,
+  isSingleTourPage,
+  tourName,
+}: BreadCrumb) => {
   return (
-    <Breadcrumb>
+    <Breadcrumb className="mb-8">
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink>
+            <Link to="/dashboard">Home</Link>
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1">
-              <BreadcrumbEllipsis className="h-4 w-4" />
-              <span className="sr-only">Toggle menu</span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Themes</DropdownMenuItem>
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <BreadcrumbItem className="capitalize">
+          {isSingleTourPage ? (
+            <BreadcrumbLink>
+              <Link to={"/dashboard"}>Tours</Link>
+            </BreadcrumbLink>
+          ) : (
+            <>{currentPage}</>
+          )}
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        {/* <BreadcrumbItem>
-          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
-        </BreadcrumbItem> */}
-        {/* <BreadcrumbSeparator /> */}
-        <BreadcrumbItem>
-          <BreadcrumbPage>{currentPage}</BreadcrumbPage>
-        </BreadcrumbItem>
+        {isSingleTourPage && (
+          <>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{tourName}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   );
