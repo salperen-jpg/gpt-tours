@@ -1,4 +1,4 @@
-import { TourInfo } from "@/components";
+import { BreadCrumb, TourInfo } from "@/components";
 import { toast } from "@/components/ui/use-toast";
 import { TourResponse, customFetch } from "@/utils";
 import { AxiosError } from "axios";
@@ -29,6 +29,7 @@ const SingleTour = () => {
   const tour = useLoaderData() as TourResponse;
   return (
     <>
+      <BreadCrumb tourName={`${tour.city}-${tour.country}`} isSingleTourPage />
       <TourInfo tourInfo={tour} isComingFromSingleTourPage />
     </>
   );

@@ -1,6 +1,6 @@
 import { toast } from "@/components/ui/use-toast";
-import { Tour, TourResponse, customFetch } from "@/utils";
-import { ToursList } from "@/components";
+import { TourResponse, customFetch } from "@/utils";
+import { BreadCrumb, ToursList } from "@/components";
 import { AxiosError } from "axios";
 import { LoaderFunction } from "react-router-dom";
 
@@ -25,6 +25,7 @@ export const loader: LoaderFunction = async (): Promise<ToursData | null> => {
 const Tours = () => {
   return (
     <section>
+      <BreadCrumb currentPage="tours" />
       <ToursList />
     </section>
   );

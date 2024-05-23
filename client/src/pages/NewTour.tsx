@@ -1,4 +1,9 @@
-import { FormInput, LoadingSkeletonNewTour, TourInfo } from "@/components";
+import {
+  BreadCrumb,
+  FormInput,
+  LoadingSkeletonNewTour,
+  TourInfo,
+} from "@/components";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import {
@@ -56,24 +61,27 @@ const NewTour = () => {
   }
 
   return (
-    <section>
-      <Form
-        method="post"
-        className="border-[1px] border-primary border-solid rounded-md p-6 mb-16 "
-      >
-        <h4 className="text-primary text-center capitalize font-medium tracking-wide mb-4">
-          Create new tour
-        </h4>
-        <div className="grid gap-4 lg:grid-cols-3 items-end">
-          <FormInput type="text" name="city" />
-          <FormInput type="text" name="country" />
-          <Button variant="default" disabled={isSubmitted}>
-            Add tour
-          </Button>
-        </div>
-      </Form>
-      {newTour && <TourInfo tourInfo={newTour} />}
-    </section>
+    <>
+      <BreadCrumb currentPage="new tour" />
+      <section>
+        <Form
+          method="post"
+          className="border-[1px] border-primary border-solid rounded-md p-6 mb-16 "
+        >
+          <h4 className="text-primary text-center capitalize font-medium tracking-wide mb-4">
+            Create new tour
+          </h4>
+          <div className="grid gap-4 lg:grid-cols-3 items-end">
+            <FormInput type="text" name="city" />
+            <FormInput type="text" name="country" />
+            <Button variant="default" disabled={isSubmitted}>
+              Add tour
+            </Button>
+          </div>
+        </Form>
+        {newTour && <TourInfo tourInfo={newTour} />}
+      </section>
+    </>
   );
 };
 export default NewTour;
