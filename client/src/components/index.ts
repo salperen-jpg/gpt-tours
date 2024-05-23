@@ -8,3 +8,4 @@ export { default as FormInput } from "./FormInput";
 export { default as TourInfo } from "./TourInfo";
 export { default as LoadingSkeletonNewTour } from "./LoadingSkeletonNewTour";
 export { default as ToursList } from "./ToursList";
+export { default as BreadCrumb } from "./BreadCrumb";

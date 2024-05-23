@@ -1,4 +1,13 @@
+import { BreadCrumb } from "@/components";
+import { useLocation } from "react-router-dom";
+
 const Profile = () => {
-  return <div>Profile</div>;
+  const something = useLocation();
+  console.log(something);
+  return (
+    <div>
+      <BreadCrumb />
+    </div>
+  );
 };
 export default Profile;
