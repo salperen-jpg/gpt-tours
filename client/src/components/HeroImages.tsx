@@ -4,6 +4,7 @@ import heroImg2 from "../assets/hero-2.jpg";
 import heroImg3 from "../assets/hero-3.jpg";
 import Logo from "./Logo";
 import Hero from "./Hero";
+import SectionSeperator from "./SectionSeperator";
 
 const imgArr = [heroImg1, heroImg2, heroImg3];
 
@@ -40,6 +41,7 @@ const HeroImages = () => {
         <Logo />
       </header>
       <Hero />
+      <SectionSeperator />
     </main>
   );
 };
