@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import heroImg1 from "../assets/hero-1.jpg";
 import heroImg2 from "../assets/hero-2.jpg";
 import heroImg3 from "../assets/hero-3.jpg";
-import Logo from "./Logo";
 import Hero from "./Hero";
 import SectionSeperator from "./SectionSeperator";
+import LandingHeader from "./LandingHeader";
 
 const imgArr = [heroImg1, heroImg2, heroImg3];
 
@@ -37,9 +37,7 @@ const HeroImages = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <header className="align-element pt-16">
-        <Logo />
-      </header>
+      <LandingHeader />
       <Hero />
       <SectionSeperator />
     </main>

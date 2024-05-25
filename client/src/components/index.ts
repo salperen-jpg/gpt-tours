@@ -15,3 +15,4 @@ export { default as SectionTitle } from "./SectionTitle";
 export { default as Services } from "./Services";
 export { default as SectionSeperator } from "./SectionSeperator";
 export { default as LandingFooter } from "./LandingFooter";
+export { default as LandingHeader } from "./LandingHeader";

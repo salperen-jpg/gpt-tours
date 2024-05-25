@@ -1,19 +1,9 @@
-import {
-  BreadCrumb,
-  FormInput,
-  LoadingSkeletonNewTour,
-  TourInfo,
-} from "@/components";
+import { BreadCrumb, FormInput } from "@/components";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { User, UserResponse, customFetch } from "@/utils";
+import { User, customFetch } from "@/utils";
 import { AxiosError } from "axios";
-import {
-  ActionFunction,
-  Form,
-  useActionData,
-  useOutletContext,
-} from "react-router-dom";
+import { ActionFunction, Form, useOutletContext } from "react-router-dom";
 import { useNavigation } from "react-router-dom";
 
 export const action: ActionFunction = async ({ request }) => {
