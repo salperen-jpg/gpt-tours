@@ -40,13 +40,15 @@ const Register = () => {
           <Form method="post">
             <div className="grid w-full items-center gap-4">
               <FormInput name="name" type="text" />
+              <FormInput name="lastName" type="text" />
+              <FormInput name="location" type="text" />
               <FormInput name="email" type="email" />
               <FormInput name="password" type="password" />
               <Button className="w-full">Register</Button>
             </div>
           </Form>
           <span className="mt-4 flex justify-end gap-x-2 text-sm">
-            you already have an account?
+            You already have an<strong>account?</strong>
             <Link to="/login" className="text-primary capitalize">
               login
             </Link>

@@ -40,7 +40,7 @@ const Login = () => {
             </div>
           </Form>
           <span className="mt-4 flex justify-end gap-x-2 text-sm">
-            you don't have an account?
+            You don't have an <strong>account?</strong>
             <Link to="/register" className="text-primary capitalize">
               register
             </Link>
