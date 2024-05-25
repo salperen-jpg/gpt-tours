@@ -59,7 +59,10 @@
     @apply max-w-6xl mx-auto px-8;
   }
   .sub-section {
-    @apply py-20;
+    @apply py-28;
+  }
+  .service-icon {
+    @apply text-5xl;
   }
 }
 
