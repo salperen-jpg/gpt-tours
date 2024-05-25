@@ -1,4 +1,4 @@
-import { HeroImages } from "@/components";
+import { HeroImages, Services } from "@/components";
 import MostPopularTours from "@/components/MostPopularTours";
 
 const Landing = () => {
@@ -6,6 +6,7 @@ const Landing = () => {
     <>
       <HeroImages />
       <MostPopularTours />
+      <Services />
     </>
   );
 };
