@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Caveat";
+  src: url("/Caveat/Caveat-VariableFont_wght.ttf") format("woff2");
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -53,6 +58,9 @@
   .align-element {
     @apply max-w-6xl mx-auto px-8;
   }
+  .sub-section {
+    @apply py-20;
+  }
 }
 
 @layer base {
@@ -66,4 +74,26 @@
 .scroll-bar-chat {
   scrollbar-color: rgba(127, 17, 224, 1) transparent;
   scrollbar-width: thin;
+}
+
+.image-background {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.section-icon {
+  animation: movable 3s ease-in 1s infinite;
+}
+
+@keyframes movable {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(30px);
+  }
 }
