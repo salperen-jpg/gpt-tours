@@ -1,4 +1,12 @@
+import { HeroImages } from "@/components";
+import MostPopularTours from "@/components/MostPopularTours";
+
 const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <>
+      <HeroImages />
+      <MostPopularTours />
+    </>
+  );
 };
 export default Landing;

@@ -9,3 +9,7 @@ export { default as TourInfo } from "./TourInfo";
 export { default as LoadingSkeletonNewTour } from "./LoadingSkeletonNewTour";
 export { default as ToursList } from "./ToursList";
 export { default as BreadCrumb } from "./BreadCrumb";
+export { default as HeroImages } from "./HeroImages";
+export { default as LandingHero } from "./LandingHero";
+export { default as Hero } from "./Hero";
+export { default as SectionTitle } from "./SectionTitle";
