@@ -18,6 +18,7 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as newTourAction } from "./pages/NewTour";
 import { default as deleteTourAction } from "./pages/DeleteTour";
+import { action as profileAction } from "./pages/Profile";
 // loader
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
@@ -77,6 +78,7 @@ function App() {
         {
           path: "profile",
           element: <Profile />,
+          action: profileAction,
         },
       ],
     },

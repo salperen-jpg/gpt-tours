@@ -1,6 +1,8 @@
 export type UserResponse = {
   _id: string;
   name: string;
+  lastName: string;
+  location: string;
   email: string;
   role: string;
   __v: number;
@@ -32,5 +34,7 @@ export type TourResponse = {
 export type User = {
   email: string;
   name: string;
+  lastName: string;
+  location: string;
   role: string;
 };
