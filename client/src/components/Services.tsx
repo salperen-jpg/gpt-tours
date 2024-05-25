@@ -1,10 +1,7 @@
 import SectionTitle from "./SectionTitle";
-import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -19,14 +16,13 @@ const Services = () => {
           {ourServices.map((s) => {
             const { icon, description, service } = s;
             return (
-              <Card
-                key={service}
-                className="text-center flex flex-col justify-center items-center gap-6"
-              >
-                <div className="text-center mt-6">{icon}</div>
+              <Card key={service} className="p-4 text-center group">
+                <div className="flex justify-center pt-6">{icon}</div>
                 <CardHeader>
-                  <CardTitle className="mb-6">{service}</CardTitle>
-                  <CardDescription>{description}</CardDescription>
+                  <CardTitle className="mb-4">{service}</CardTitle>
+                  <CardDescription className="leading-7">
+                    {description}
+                  </CardDescription>
                 </CardHeader>
               </Card>
             );
