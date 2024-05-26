@@ -89,3 +89,14 @@ export const updateUserValidator = validatorMiddleware([
       }
     }),
 ]);
+
+// QUERIES ROUTE
+export const queryValidator = validatorMiddleware([
+  body("title").notEmpty().withMessage("title can not be empty"),
+  body("email")
+    .notEmpty()
+    .withMessage("email can not be empty")
+    .isEmail()
+    .withMessage("invalid email format"),
+  body("message").notEmpty().withMessage("message can not be empty"),
+]);

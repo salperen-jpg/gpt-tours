@@ -13,6 +13,7 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import tourRoute from "./routes/tourRoute.js";
 import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/userRoute.js";
+import queryRoute from "./routes/queryRoute.js";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/tours", authMiddleware, tourRoute);
 app.use("/api/v1/user", authMiddleware, userRoute);
+app.use("/api/v1/queries", queryRoute);
 
 // ERRORS
 app.use(notFound);
