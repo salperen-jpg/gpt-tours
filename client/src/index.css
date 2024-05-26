@@ -64,6 +64,9 @@
   .service-icon {
     @apply text-5xl transition delay-150 group-hover:-translate-y-6;
   }
+  .tick {
+    @apply grid place-items-center rounded-full;
+  }
 }
 
 @layer base {

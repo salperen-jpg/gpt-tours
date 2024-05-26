@@ -14,16 +14,18 @@ const FormInput = ({
   type,
   defaultValue,
   labelTitle,
+  placeHolder,
 }: FormInputProps) => {
   return (
     <div className="flex flex-col space-y-1.5">
       <Label htmlFor={name} className="capitalize text-sm tracking-wide">
-        {name || labelTitle}
+        {labelTitle || name}
       </Label>
       <Input
         type={type}
         name={name}
         id={name}
+        placeholder={placeHolder}
         defaultValue={defaultValue}
         required
       />

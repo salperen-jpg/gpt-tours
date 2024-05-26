@@ -19,6 +19,7 @@ import { action as loginAction } from "./pages/Login";
 import { action as newTourAction } from "./pages/NewTour";
 import { default as deleteTourAction } from "./pages/DeleteTour";
 import { action as profileAction } from "./pages/Profile";
+import { action as landingAction } from "./components/ContactUs";
 // loader
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
@@ -44,6 +45,7 @@ function App() {
       path: "/",
       element: <Landing />,
       errorElement: <Error />,
+      action: landingAction,
     },
     {
       path: "dashboard",
