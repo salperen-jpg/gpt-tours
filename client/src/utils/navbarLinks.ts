@@ -14,13 +14,8 @@ export const links: Link[] = [
   },
   {
     id: nanoid(),
-    path: "./tours/newTour",
+    path: "newTour",
     label: "new tour",
-  },
-  {
-    id: nanoid(),
-    path: "profile",
-    label: "profile",
   },
   {
     id: nanoid(),
@@ -29,7 +24,12 @@ export const links: Link[] = [
   },
   {
     id: nanoid(),
-    path: "calendar",
-    label: "calendar",
+    path: "profile",
+    label: "profile",
   },
+  // {
+  //   id: nanoid(),
+  //   path: "calendar",
+  //   label: "calendar",
+  // },
 ];

@@ -64,7 +64,7 @@ function App() {
           loader: toursLoader,
         },
         {
-          path: "tours/newTour",
+          path: "newTour",
           element: <NewTour />,
           action: newTourAction,
         },
