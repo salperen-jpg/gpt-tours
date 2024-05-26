@@ -91,6 +91,9 @@
 .section-icon {
   animation: movable 3s ease-in 1s infinite;
 }
+.logo {
+  -webkit-background-clip: text;
+}
 
 @keyframes movable {
   0% {
