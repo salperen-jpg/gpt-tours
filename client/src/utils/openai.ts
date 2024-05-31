@@ -13,7 +13,7 @@ export const chatResponse = async (
     const completion = await openai.chat.completions.create({
       messages: [
         { role: "system", content: "You are a helpful assistant." },
-        ...chatMessages,
+        ...(chatMessages as OpenAI.Chat.Completions.ChatCompletionMessageParam[]),
       ],
       model: "gpt-3.5-turbo",
       temperature: 0,
