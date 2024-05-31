@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "setup": "npm i && cd ../client && npm i",
+    "deployment-build": "npm run setup && cd ../client && npm run build",
     "startClient": "cd ../client && npm run dev",
     "start": "conc \"npm run dev\" \"npm run startClient\""
   },
