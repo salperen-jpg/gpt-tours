@@ -1,6 +1,6 @@
 import { Navbar } from "@/components";
 import { toast } from "@/components/ui/use-toast";
-import { UserResponse, customFetch } from "@/utils";
+import { User, UserResponse, customFetch } from "@/utils";
 import { AxiosError } from "axios";
 import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
 
@@ -22,6 +22,10 @@ export const loader = async (): Promise<UserResponse | Response> => {
   }
 };
 
+export type OutletUser = {
+  user: User;
+};
+
 const SharedLayout = () => {
   const user = useLoaderData() as UserResponse;
   const navigate = useNavigate();
@@ -35,7 +39,7 @@ const SharedLayout = () => {
   return (
     <>
       <Navbar user={user} logout={logout} />
-      <section className="align-element py-20">
+      <section className="align-element py-20 ">
         <Outlet context={{ user }} />
       </section>
     </>

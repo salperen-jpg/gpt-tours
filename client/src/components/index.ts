@@ -19,3 +19,4 @@ export { default as LandingHeader } from "./LandingHeader";
 export { default as ContactUs } from "./ContactUs";
 export { default as LandingLoadingState } from "./LandingLoadingState";
 export { default as LandingAfterFormState } from "./LandingAfterFormState";
+export { default as TokenAmount } from "./TokenAmount";
