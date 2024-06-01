@@ -23,16 +23,12 @@ const BreadCrumb = ({
     <Breadcrumb className="mb-8">
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link to="/dashboard">Home</Link>
-          </BreadcrumbLink>
+          <Link to="/dashboard">Home</Link>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem className="capitalize">
           {isSingleTourPage ? (
-            <BreadcrumbLink>
-              <Link to={"/dashboard"}>Tours</Link>
-            </BreadcrumbLink>
+            <Link to={"/dashboard"}>Tours</Link>
           ) : (
             <>{currentPage}</>
           )}
