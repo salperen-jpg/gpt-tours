@@ -1,10 +1,31 @@
-import { BreadCrumb, FormInput } from "@/components";
+import { BreadCrumb, FormInput, TokenAmount } from "@/components";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { User, customFetch } from "@/utils";
+import { customFetch } from "@/utils";
 import { AxiosError } from "axios";
-import { ActionFunction, Form, useOutletContext } from "react-router-dom";
+import {
+  ActionFunction,
+  Form,
+  LoaderFunction,
+  useLoaderData,
+  useOutletContext,
+} from "react-router-dom";
 import { useNavigation } from "react-router-dom";
+import { OutletUser } from "./SharedLayout";
+
+export type Token = {
+  tokenAmount: number;
+};
+
+export const loader: LoaderFunction = async (): Promise<Token | null> => {
+  try {
+    const response = await customFetch.get<Token>("/token");
+    return response.data;
+  } catch (error) {
+    toast({ description: "something went wrong!" });
+    return null;
+  }
+};
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -22,12 +43,9 @@ export const action: ActionFunction = async ({ request }) => {
   return null;
 };
 
-type OutletUser = {
-  user: User;
-};
-
 const Profile = () => {
   const { user } = useOutletContext() as OutletUser;
+  const token = useLoaderData() as Token;
   const { name, lastName, email, location } = user;
   const isSubmitted = useNavigation().state === "submitting";
 
@@ -35,6 +53,7 @@ const Profile = () => {
     <>
       <BreadCrumb currentPage="Profile" />
       <section>
+        <TokenAmount tokenAmount={token.tokenAmount} />
         <Form
           method="post"
           className="border-[1px] border-primary border-solid rounded-md p-6 mb-16 "
@@ -44,7 +63,12 @@ const Profile = () => {
           </h4>
           <div className="grid gap-4 lg:grid-cols-3 items-end">
             <FormInput type="text" name="name" defaultValue={name} />
-            <FormInput type="text" name="lastName" defaultValue={lastName} />
+            <FormInput
+              type="text"
+              name="lastName"
+              labelTitle="last name"
+              defaultValue={lastName}
+            />
             <FormInput type="text" name="location" defaultValue={location} />
             <FormInput type="text" name="email" defaultValue={email} />
             <Button variant="default" disabled={isSubmitted}>
