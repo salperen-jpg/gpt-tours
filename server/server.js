@@ -16,6 +16,7 @@ import tourRoute from "./routes/tourRoute.js";
 import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/userRoute.js";
 import queryRoute from "./routes/queryRoute.js";
+import tokenRoute from "./routes/tokenRoute.js";
 
 const app = express();
 
@@ -37,6 +38,8 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/tours", authMiddleware, tourRoute);
 app.use("/api/v1/user", authMiddleware, userRoute);
 app.use("/api/v1/queries", queryRoute);
+// try out token approach
+app.use("/api/v1/token", authMiddleware, tokenRoute);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));

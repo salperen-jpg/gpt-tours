@@ -4,12 +4,13 @@ import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { UnauthenticatedError } from "../errors/customErrors.js";
 import { createJWT } from "../utils/jwt.js";
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   const isFirstUser = (await User.countDocuments()) === 0;
   req.body.role = isFirstUser ? "admin" : "user";
   req.body.password = await hashPassword(req.body.password);
-  await User.create(req.body);
-  res.status(StatusCodes.CREATED).json({ msg: "User created!" });
+  const user = await User.create(req.body);
+  req.userTokenId = user._id;
+  next();
 };
 
 export const login = async (req, res) => {
