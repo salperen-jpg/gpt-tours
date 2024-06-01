@@ -10,8 +10,7 @@ export type UserResponse = {
 
 export type ChatMessage = {
   content: string | null;
-  role?: string;
-  name?: string;
+  role: string;
 };
 
 export type Tour = {
