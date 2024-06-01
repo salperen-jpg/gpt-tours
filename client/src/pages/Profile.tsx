@@ -7,7 +7,6 @@ import {
   ActionFunction,
   Form,
   LoaderFunction,
-  useLoaderData,
   useOutletContext,
 } from "react-router-dom";
 import { useNavigation } from "react-router-dom";
@@ -45,7 +44,6 @@ export const action: ActionFunction = async ({ request }) => {
 
 const Profile = () => {
   const { user } = useOutletContext() as OutletUser;
-  const token = useLoaderData() as Token;
   const { name, lastName, email, location } = user;
   const isSubmitted = useNavigation().state === "submitting";
 
@@ -53,7 +51,7 @@ const Profile = () => {
     <>
       <BreadCrumb currentPage="Profile" />
       <section>
-        <TokenAmount tokenAmount={token.tokenAmount} />
+        <TokenAmount />
         <Form
           method="post"
           className="border-[1px] border-primary border-solid rounded-md p-6 mb-16 "

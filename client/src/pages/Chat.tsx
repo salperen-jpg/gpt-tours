@@ -4,7 +4,7 @@ import { ChatMessage, chatResponse } from "@/utils";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
-import { BreadCrumb } from "@/components";
+import { BreadCrumb, TokenAmount } from "@/components";
 
 const Chat = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -36,6 +36,7 @@ const Chat = () => {
   return (
     <>
       <BreadCrumb currentPage="chat" />
+      <TokenAmount />
       <main className="min-h-[calc(100vh-15rem)] grid grid-rows-[1fr,auto] ">
         <div className="h-[calc(100vh-19rem)] overflow-y-auto scroll-bar-chat">
           {messages.map((message) => {

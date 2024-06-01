@@ -24,7 +24,7 @@ import { action as landingAction } from "./components/ContactUs";
 import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
 import { loader as singleTourLoader } from "./pages/SingleTour";
-import { loader as profileLoader } from "./pages/Profile";
+import { loader as tokenLoader } from "./pages/Profile";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 function App() {
@@ -63,6 +63,7 @@ function App() {
         {
           path: "chat",
           element: <Chat />,
+          loader: tokenLoader,
         },
         {
           path: "newTour",
@@ -82,7 +83,7 @@ function App() {
           path: "profile",
           element: <Profile />,
           action: profileAction,
-          loader: profileLoader,
+          loader: tokenLoader,
         },
       ],
     },
