@@ -40,8 +40,8 @@ export const action: ActionFunction = async ({
       toast({ description: "tour can not be generated!" });
       return null;
     }
-    const tourImage = await generateImage(country);
-    generateNewTourAI.image = tourImage;
+    const tourImage = await generateImage({ query: country });
+    generateNewTourAI.image = tourImage as string;
     await customFetch.post("/tours", generateNewTourAI);
     toast({ description: "tour saved to db!" });
     return generateNewTourAI;
@@ -57,7 +57,27 @@ const NewTour = () => {
   const isSubmitted = useNavigation().state === "submitting";
 
   if (isSubmitted) {
-    return <LoadingSkeletonNewTour />;
+    return (
+      <>
+        <BreadCrumb currentPage="new tour" />
+        <Form
+          method="post"
+          className="border-[1px] border-primary border-solid rounded-md p-6 mb-16 "
+        >
+          <h4 className="text-primary text-center capitalize font-medium tracking-wide mb-4">
+            Create new tour
+          </h4>
+          <div className="grid gap-4 lg:grid-cols-3 items-end">
+            <FormInput type="text" name="city" />
+            <FormInput type="text" name="country" />
+            <Button variant="default" disabled={isSubmitted}>
+              Add tour
+            </Button>
+          </div>
+        </Form>
+        <LoadingSkeletonNewTour />
+      </>
+    );
   }
 
   return (

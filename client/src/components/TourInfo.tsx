@@ -2,23 +2,35 @@ import { TourResponse } from "@/utils";
 import { MdTour } from "react-icons/md";
 import { Button } from "./ui/button";
 import { Form } from "react-router-dom";
+import PhotoGallery from "./PhotoGallery";
 
 type TourInfoProps = {
   tourInfo: TourResponse;
   isComingFromSingleTourPage?: boolean;
+  photoGallery?: string[];
 };
 
-const TourInfo = ({ tourInfo, isComingFromSingleTourPage }: TourInfoProps) => {
+const TourInfo = ({
+  tourInfo,
+  photoGallery,
+  isComingFromSingleTourPage,
+}: TourInfoProps) => {
   const { _id, city, description, stops, title, country, image } = tourInfo;
   return (
     <>
       <h1 className="mb-8 text-primary text-2xl tracking-wide">
         {city}-{country}
       </h1>
-      <section className="grid gap-8 lg:grid-cols-2 gap-x-12">
-        {image && (
+      <section
+        className={`grid gap-8 lg:grid-cols-2 gap-x-12 ${
+          isComingFromSingleTourPage ? "lg:grid-cols-[1.5fr,1fr]" : ""
+        }`}
+      >
+        {isComingFromSingleTourPage ? (
+          <PhotoGallery photoGallery={photoGallery as string[]} />
+        ) : (
           <img
-            src={image}
+            src={image ?? ""}
             alt={country}
             className="rounded-lg bg-opacity-85 lg:max-h-[500px] lg:min-w-[500px] lg:object-cover"
           />

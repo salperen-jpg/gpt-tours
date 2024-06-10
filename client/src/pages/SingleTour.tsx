@@ -1,6 +1,6 @@
 import { BreadCrumb, TourInfo } from "@/components";
 import { toast } from "@/components/ui/use-toast";
-import { TourResponse, customFetch } from "@/utils";
+import { TourResponse, customFetch, generateImage } from "@/utils";
 import { AxiosError } from "axios";
 import { LoaderFunction, redirect, useLoaderData } from "react-router-dom";
 
@@ -8,13 +8,22 @@ type SingleTourData = {
   tour: TourResponse;
 };
 
+type LoaderReturn = {
+  tour: TourResponse;
+  photoGallery: string[];
+};
+
 export const loader: LoaderFunction = async ({
   params,
-}): Promise<TourResponse | Response> => {
+}): Promise<LoaderReturn | Response> => {
   const { id } = params;
   try {
     const response = await customFetch<SingleTourData>(`/tours/${id}`);
-    return response.data.tour;
+    const photoGallery = (await generateImage({
+      query: response.data.tour.country,
+      per_page: 5,
+    })) as string[];
+    return { tour: response.data.tour, photoGallery };
   } catch (error) {
     const errorResponse =
       error instanceof AxiosError
@@ -26,11 +35,18 @@ export const loader: LoaderFunction = async ({
 };
 
 const SingleTour = () => {
-  const tour = useLoaderData() as TourResponse;
+  const data = useLoaderData() as LoaderReturn;
   return (
     <>
-      <BreadCrumb tourName={`${tour.city}-${tour.country}`} isSingleTourPage />
-      <TourInfo tourInfo={tour} isComingFromSingleTourPage />
+      <BreadCrumb
+        tourName={`${data.tour.city}-${data.tour.country}`}
+        isSingleTourPage
+      />
+      <TourInfo
+        tourInfo={data.tour}
+        photoGallery={data.photoGallery}
+        isComingFromSingleTourPage
+      />
     </>
   );
 };

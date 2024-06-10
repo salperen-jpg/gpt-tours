@@ -20,3 +20,4 @@ export { default as ContactUs } from "./ContactUs";
 export { default as LandingLoadingState } from "./LandingLoadingState";
 export { default as LandingAfterFormState } from "./LandingAfterFormState";
 export { default as TokenAmount } from "./TokenAmount";
+export { default as PhotoGallery } from "./PhotoGallery";
