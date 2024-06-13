@@ -28,7 +28,7 @@ app.use(cookieParser());
 // deployment stuff goes in
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
-console.log(path.resolve(__dirname, "../client/dist"));
+
 if ((process.env.NODE_ENV = "development")) app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 5000;
