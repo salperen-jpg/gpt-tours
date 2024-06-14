@@ -27,9 +27,16 @@ import { loader as singleTourLoader } from "./pages/SingleTour";
 import { loader as tokenLoader } from "./pages/Profile";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-function App() {
-  const queryClient = new QueryClient();
 
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
+function App() {
   const router = createBrowserRouter([
     {
       path: "register",
@@ -68,7 +75,7 @@ function App() {
         {
           path: "newTour",
           element: <NewTour />,
-          action: newTourAction,
+          action: newTourAction(queryClient),
         },
         {
           path: "tours/:id",
