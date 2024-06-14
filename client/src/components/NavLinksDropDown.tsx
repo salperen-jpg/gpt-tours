@@ -7,10 +7,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { links } from "@/utils";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 
 const NavLinksDropDown = () => {
+  const { pathname } = useLocation();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="lg:hidden">
@@ -26,9 +28,18 @@ const NavLinksDropDown = () => {
             <DropdownMenuItem key={id}>
               <NavLink
                 to={path}
-                className={({ isActive }) =>
-                  `capitalize w-full ${isActive ? "text-primary" : ""}`
-                }
+                className={({ isActive }) => {
+                  if (link.path === ".") {
+                    return `capitalize font-light tracking-wide ${
+                      isActive && pathname === "/dashboard"
+                        ? "text-primary"
+                        : ""
+                    }`;
+                  }
+                  return `capitalize font-light tracking-wide ${
+                    isActive ? "text-primary" : ""
+                  }`;
+                }}
               >
                 {label}
               </NavLink>
