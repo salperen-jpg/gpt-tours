@@ -36,10 +36,14 @@ const deleteTour = async (req, res) => {
 };
 
 export const getTourByCityAndCountry = async (req, res) => {
-  console.log("correct placement!");
-  const { city, country } = req.params;
-  const tour = await Tour.findOne({ city, country });
-  console.log(tour);
+  let { city, country } = req.params;
+
+  const tour = await Tour.findOne({
+    city,
+    country,
+    createdBy: req.user.userId,
+  });
+
   if (tour) {
     res.status(StatusCodes.OK).json({ tour });
     return;
