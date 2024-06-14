@@ -18,3 +18,19 @@ export const getCurrentUserTokenAmount = async (req, res) => {
     tokenAmount,
   });
 };
+
+export const subtractUsedTokenAmount = async (req, res) => {
+  const { usedToken } = req.body;
+  const getCurrentToken = await Token.findOne({ tokenOwner: req.user.userId });
+  const { tokenAmount } = getCurrentToken;
+  // update the token;
+  const latest = await Token.findOneAndUpdate(
+    { tokenOwner: req.user.userId },
+    { tokenAmount: tokenAmount - usedToken },
+    { new: true }
+  );
+  res.status(StatusCodes.OK).json({
+    msg: "Updated Successfully!",
+    token: latest.tokenAmount,
+  });
+};
