@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async (): Promise<Token | null> => {
     const response = await customFetch.get<Token>("/token");
     return response.data;
   } catch (error) {
-    toast({ description: "something went wrong!" });
+    toast({ description: "something went wrong with token amount!" });
     return null;
   }
 };
