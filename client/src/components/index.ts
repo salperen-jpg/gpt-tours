@@ -21,3 +21,5 @@ export { default as LandingLoadingState } from "./LandingLoadingState";
 export { default as LandingAfterFormState } from "./LandingAfterFormState";
 export { default as TokenAmount } from "./TokenAmount";
 export { default as PhotoGallery } from "./PhotoGallery";
+export { default as ToursForm } from "./ToursForm";
+export { default as FormSelect } from "./FormSelect";
