@@ -7,6 +7,7 @@ type FormInputProps = {
   defaultValue?: string;
   labelTitle?: string;
   placeHolder?: string;
+  required?: boolean;
 };
 
 const FormInput = ({
@@ -15,6 +16,7 @@ const FormInput = ({
   defaultValue,
   labelTitle,
   placeHolder,
+  required,
 }: FormInputProps) => {
   return (
     <div className="flex flex-col space-y-1.5">
@@ -27,7 +29,7 @@ const FormInput = ({
         id={name}
         placeholder={placeHolder}
         defaultValue={defaultValue}
-        required
+        required={required}
       />
     </div>
   );
