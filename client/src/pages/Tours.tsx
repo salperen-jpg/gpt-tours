@@ -1,17 +1,35 @@
 import { toast } from "@/components/ui/use-toast";
 import { TourResponse, customFetch } from "@/utils";
-import { BreadCrumb, ToursList } from "@/components";
+import { BreadCrumb, SectionTitle, ToursForm, ToursList } from "@/components";
 import { AxiosError } from "axios";
 import { LoaderFunction } from "react-router-dom";
 
-export type ToursData = {
-  tours: TourResponse[];
+type Params = {
+  title: string;
+  country: string;
+  city: string;
+  sort: string;
 };
 
-export const loader: LoaderFunction = async (): Promise<ToursData | null> => {
+export type ToursData = {
+  tours: TourResponse[];
+  numOfTours: number;
+  currentPage: number;
+  totalPageNumber: number;
+} & Params;
+
+export const loader: LoaderFunction = async ({
+  request,
+}): Promise<ToursData | null> => {
+  const searchParams = new URL(request.url).searchParams;
+  const params = Object.fromEntries(searchParams.entries());
   try {
-    const { data } = await customFetch.get<ToursData>("/tours");
-    return data;
+    const { data } = await customFetch.get<ToursData>("/tours", {
+      params,
+    });
+    console.log(params);
+    console.log(data);
+    return { ...data, ...params };
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
@@ -26,6 +44,8 @@ const Tours = () => {
   return (
     <section>
       <BreadCrumb currentPage="tours" />
+      <ToursForm />
+      <SectionTitle title="Tours" />
       <ToursList />
     </section>
   );
