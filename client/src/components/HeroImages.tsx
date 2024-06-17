@@ -30,7 +30,6 @@ const HeroImages = () => {
       className="bg-center bg-no-repeat"
       style={{
         backgroundImage: `linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('${imgArr[index]}')`,
-        width: "100vw",
         height: "100vh",
         backgroundSize: "cover",
         backgroundPosition: "center",
