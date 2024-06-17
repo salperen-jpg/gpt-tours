@@ -20,9 +20,6 @@ const ToursList = () => {
         <div className="flex flex-col justify-center items-center gap-y-4">
           <RiAlarmWarningFill className="text-4xl warning" />
           <p className="text-xl">It seems you don't have any tours!</p>
-          <Button asChild>
-            <Link to="./newTour">Create new tour</Link>
-          </Button>
         </div>
       </div>
     );
@@ -31,7 +28,7 @@ const ToursList = () => {
   return (
     <>
       <h2 className="text-xl mb-4 text-primary font-bold tracking-wide">
-        {numOfTours} tour{numOfTours > 1 ? "'s" : ""} found
+        {numOfTours} tour{numOfTours > 1 ? "s" : ""} found
       </h2>
       <section className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {tours.map((tour) => {

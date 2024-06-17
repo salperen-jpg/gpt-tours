@@ -1,37 +1,37 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 type FormInputProps = {
   name: string;
   type: string;
+  label?: string;
   defaultValue?: string;
-  labelTitle?: string;
-  placeHolder?: string;
   required?: boolean;
+  placeholder?: string;
 };
 
-const FormInput = ({
+function FormInput({
+  label,
   name,
   type,
   defaultValue,
-  labelTitle,
-  placeHolder,
   required,
-}: FormInputProps) => {
+  placeholder,
+}: FormInputProps) {
   return (
-    <div className="flex flex-col space-y-1.5">
-      <Label htmlFor={name} className="capitalize text-sm tracking-wide">
-        {labelTitle || name}
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
+        {label || name}
       </Label>
       <Input
-        type={type}
-        name={name}
         id={name}
-        placeholder={placeHolder}
+        name={name}
+        type={type}
         defaultValue={defaultValue}
         required={required}
+        placeholder={placeholder}
       />
     </div>
   );
-};
+}
 export default FormInput;
