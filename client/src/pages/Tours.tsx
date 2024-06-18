@@ -26,7 +26,7 @@ export const loader: LoaderFunction = async ({
   const params = Object.fromEntries([
     ...new URL(request.url).searchParams.entries(),
   ]);
-  const { data } = await customFetch.get<ToursData>("/tours", {
+  const { data } = await customFetch<ToursData>("/tours", {
     params,
   });
   return { ...data, params };

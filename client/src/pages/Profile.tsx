@@ -64,7 +64,7 @@ const Profile = () => {
             <FormInput
               type="text"
               name="lastName"
-              labelTitle="last name"
+              label="last name"
               defaultValue={lastName}
             />
             <FormInput type="text" name="location" defaultValue={location} />
