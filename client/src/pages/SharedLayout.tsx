@@ -2,7 +2,13 @@ import { Navbar } from "@/components";
 import { toast } from "@/components/ui/use-toast";
 import { User, UserResponse, customFetch } from "@/utils";
 import { AxiosError } from "axios";
-import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 
 type UserFetch = {
   user: UserResponse;
@@ -29,6 +35,8 @@ export type OutletUser = {
 const SharedLayout = () => {
   const user = useLoaderData() as UserResponse;
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
 
   const logout = async () => {
     await customFetch("/auth/logout");
@@ -40,7 +48,7 @@ const SharedLayout = () => {
     <>
       <Navbar user={user} logout={logout} />
       <section className="align-element py-20 ">
-        <Outlet context={{ user }} />
+        {isPageLoading ? <>Loading...</> : <Outlet context={{ user }} />}
       </section>
     </>
   );
