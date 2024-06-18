@@ -17,9 +17,9 @@ const ToursList = () => {
   if (tours.length < 1) {
     return (
       <div className="h-[30vh] grid place-items-center">
-        <div className="flex flex-col justify-center items-center gap-y-4">
+        <div className="flex flex-col justify-center items-center gap-y-4 bg-secondary p-16 rounded-md">
           <RiAlarmWarningFill className="text-4xl warning" />
-          <p className="text-xl">It seems you don't have any tours!</p>
+          <p className="text-xl">No tour found!</p>
         </div>
       </div>
     );
