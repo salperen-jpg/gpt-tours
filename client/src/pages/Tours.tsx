@@ -1,5 +1,11 @@
 import { TourResponse, customFetch } from "@/utils";
-import { BreadCrumb, SectionTitle, ToursForm, ToursList } from "@/components";
+import {
+  BreadCrumb,
+  Pagination,
+  SectionTitle,
+  ToursForm,
+  ToursList,
+} from "@/components";
 import { LoaderFunction } from "react-router-dom";
 
 export type Params = {
@@ -39,6 +45,7 @@ const Tours = () => {
       <ToursForm />
       <SectionTitle title="Tours" />
       <ToursList />
+      <Pagination />
     </section>
   );
 };

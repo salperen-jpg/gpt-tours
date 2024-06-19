@@ -23,3 +23,4 @@ export { default as TokenAmount } from "./TokenAmount";
 export { default as PhotoGallery } from "./PhotoGallery";
 export { default as ToursForm } from "./ToursForm";
 export { default as FormSelect } from "./FormSelect";
+export { default as Pagination } from "./Pagination";
