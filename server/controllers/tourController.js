@@ -3,7 +3,6 @@ import { StatusCodes } from "http-status-codes";
 
 // GET TOURS
 const getAllTours = async (req, res) => {
-  console.log(req.query);
   // start with query params;
   const { title, city, country, sort } = req.query;
   const queryParamsObject = {
