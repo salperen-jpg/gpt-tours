@@ -6,7 +6,7 @@ import {
   ToursForm,
   ToursList,
 } from "@/components";
-import { LoaderFunction } from "react-router-dom";
+import { LoaderFunction, useLoaderData } from "react-router-dom";
 
 export type Params = {
   params: {
@@ -39,6 +39,16 @@ export const loader: LoaderFunction = async ({
 };
 
 const Tours = () => {
+  const { tours, params } = useLoaderData() as ToursDataWithParams;
+  if (tours.length < 1 && Object.keys(params).length === 0) {
+    return (
+      <>
+        <BreadCrumb currentPage="tours" />
+        <SectionTitle title="Tours" />
+        <ToursList />
+      </>
+    );
+  }
   return (
     <section>
       <BreadCrumb currentPage="tours" />

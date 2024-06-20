@@ -8,18 +8,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-import { ToursData } from "@/pages/Tours";
+import { ToursDataWithParams } from "@/pages/Tours";
 import { RiAlarmWarningFill } from "react-icons/ri";
 
 const ToursList = () => {
-  const { tours, numOfTours } = useLoaderData() as ToursData;
+  const { tours, numOfTours, params } = useLoaderData() as ToursDataWithParams;
 
   if (tours.length < 1) {
     return (
       <div className="h-[30vh] grid place-items-center">
         <div className="flex flex-col justify-center items-center gap-y-4 bg-secondary p-16 rounded-md">
           <RiAlarmWarningFill className="text-4xl warning" />
-          <p className="text-xl">No tour found!</p>
+          {Object.keys(params).length > 1 ? (
+            <p className="text-xl">No tour found for the filters criteria!</p>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <p className="text-xl">No tour found!</p>
+              <Button asChild variant="outline">
+                <Link to="/dashboard/newTour">Create tour</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );
