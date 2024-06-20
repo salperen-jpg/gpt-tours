@@ -24,7 +24,7 @@ const PaginationComp = () => {
     navigate(`${pathname}?${searchParams.toString()}`);
   };
 
-  if (totalPageNumber === 1) {
+  if (totalPageNumber <= 1) {
     return;
   }
   return (
