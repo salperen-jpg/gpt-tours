@@ -1,4 +1,10 @@
-import { ContactUs, HeroImages, LandingFooter, Services } from "@/components";
+import {
+  ContactUs,
+  HeroImages,
+  LandingFooter,
+  Questions,
+  Services,
+} from "@/components";
 import MostPopularTours from "@/components/MostPopularTours";
 
 const Landing = () => {
@@ -7,6 +13,7 @@ const Landing = () => {
       <HeroImages />
       <MostPopularTours />
       <Services />
+      <Questions />
       <ContactUs />
       <LandingFooter />
     </>

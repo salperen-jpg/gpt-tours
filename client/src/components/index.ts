@@ -24,3 +24,4 @@ export { default as PhotoGallery } from "./PhotoGallery";
 export { default as ToursForm } from "./ToursForm";
 export { default as FormSelect } from "./FormSelect";
 export { default as Pagination } from "./Pagination";
+export { default as Questions } from "./Questions";

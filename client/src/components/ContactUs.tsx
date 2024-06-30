@@ -47,7 +47,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <section className="sub-section align-element max-w-2xl">
+      <section className="sub-section mx-auto max-w-2xl px-8">
         <SectionTitle title="Contact Us" />
         <p className="text-center p-4 max-w-[30rem] mb-12 leading-7 mx-auto">
           Questions about our products/services,application or just want to say
