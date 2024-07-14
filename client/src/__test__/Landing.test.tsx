@@ -33,3 +33,15 @@ test("is footer there", () => {
   const footerContent = screen.getByRole("contentinfo");
   expect(footerContent).toBeInTheDocument();
 });
+
+test("should render 2 links to navigate register", () => {
+  const getStartedButton = screen.getByRole("link", {
+    name: /get started/i,
+  });
+  const loginRegister = screen.getByRole("link", { name: /register/i });
+
+  expect(getStartedButton).toHaveAttribute("href", "/register");
+  expect(loginRegister).toHaveAttribute("href", "/register");
+  expect(getStartedButton).toBeInTheDocument();
+  expect(loginRegister).toBeInTheDocument();
+});
