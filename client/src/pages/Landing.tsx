@@ -2,6 +2,7 @@ import {
   ContactUs,
   HeroImages,
   LandingFooter,
+  Plans,
   Questions,
   Services,
 } from "@/components";
@@ -14,6 +15,7 @@ const Landing = () => {
       <MostPopularTours />
       <Services />
       <Questions />
+      <Plans />
       <ContactUs />
       <LandingFooter />
     </>
