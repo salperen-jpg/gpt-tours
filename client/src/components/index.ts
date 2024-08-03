@@ -27,3 +27,4 @@ export { default as Pagination } from "./Pagination";
 export { default as Questions } from "./Questions";
 export { default as Plans } from "./Plans";
 export { default as Plan } from "./Plan";
+export { default as CheckoutForm } from "./CheckoutForm";

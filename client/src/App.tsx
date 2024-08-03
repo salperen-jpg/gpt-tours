@@ -3,10 +3,12 @@ import { Toaster } from "@/components/ui/toaster";
 // pages
 import {
   Chat,
+  Checkout,
   Error,
   Landing,
   Login,
   NewTour,
+  Plans,
   Profile,
   Register,
   SharedLayout,
@@ -25,6 +27,7 @@ import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
 import { loader as singleTourLoader } from "./pages/SingleTour";
 import { loader as tokenLoader } from "./pages/Profile";
+import {loader as  checkoutLoader} from './pages/Checkout';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -92,6 +95,15 @@ function App() {
           action: profileAction,
           loader: tokenLoader,
         },
+        {
+          path: "plans",
+          element: <Plans />,
+        },
+        {
+          path: "checkout/:plan",
+          element: <Checkout />,
+          loader: checkoutLoader
+        }
       ],
     },
   ]);
