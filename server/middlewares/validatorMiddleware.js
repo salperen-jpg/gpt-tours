@@ -19,8 +19,8 @@ export const validatorMiddleware = (validatorChain) => [
 // AUTH ROUTES
 export const registerValidator = validatorMiddleware([
   body("name").notEmpty().withMessage("name can not be empty"),
-  body("lastName").notEmpty().withMessage("name can not be empty"),
-  body("location").notEmpty().withMessage("name can not be empty"),
+  body("lastName").notEmpty().withMessage("last name can not be empty"),
+  body("location").notEmpty().withMessage("location can not be empty"),
   body("email")
     .notEmpty()
     .withMessage("email can not be empty")
