@@ -1,12 +1,12 @@
 import { StatusCodes } from "http-status-codes";
 import Token from "../models/tokenModel.js";
 
-export const createTokenInstance = async (req, res) => {
+export const createTokenInstance = async (req, res, next) => {
   await Token.create({
     tokenOwner: req.userTokenId,
     tokenAmount: process.env.INITIAL_TOKEN_AMOUNT,
   });
-  res.status(StatusCodes.CREATED).json({ msg: "User created!" });
+  next();
 };
 
 export const getCurrentUserTokenAmount = async (req, res) => {
