@@ -27,7 +27,8 @@ import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
 import { loader as singleTourLoader } from "./pages/SingleTour";
 import { loader as tokenLoader } from "./pages/Profile";
-import {loader as  checkoutLoader} from './pages/Checkout';
+import { loader as  checkoutLoader} from './pages/Checkout';
+import { loader as  landingLoader} from './pages/Landing';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -58,6 +59,7 @@ function App() {
       element: <Landing />,
       errorElement: <Error />,
       action: landingAction,
+      loader: landingLoader
     },
     {
       path: "dashboard",
@@ -98,6 +100,7 @@ function App() {
         {
           path: "plans",
           element: <Plans />,
+          loader:checkoutLoader
         },
         {
           path: "checkout/:plan",
