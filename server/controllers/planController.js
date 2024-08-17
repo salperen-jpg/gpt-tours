@@ -46,6 +46,7 @@ const getSinglePlan= async(req,res)=>{
 
 const updatePlan = async (req, res) => {
   const newPlan=req.body;
+  delete newPlan._id;
   const isValid=await isPlanValid(newPlan)
   if(!isValid) throw new BadRequestError('Requsted plan did not match any existing plans!')
   await Plan.findOneAndUpdate({planOwner:req.user.userId},req.body,{new:true});
@@ -56,9 +57,12 @@ const updatePlan = async (req, res) => {
 const createPaymentIntent= async(req,res)=>{
   const newPlan=req.body;
   const isValid=await isPlanValid(newPlan)
-  if(!isValid) throw new BadRequestError('Requsted plan did not match any existing plans!')
+  if(!isValid) throw new BadRequestError('Requsted plan did not match any existing plans!');
+  const plan= await AllPlans.findById(newPlan._id);
+  const planPrice=plan.cost;
+  console.log(planPrice);
   const paymentIntent= await stripeInstant.paymentIntents.create({
-    amount:300,
+    amount:planPrice,
     currency:"usd",
     automatic_payment_methods:{
       enabled:true
