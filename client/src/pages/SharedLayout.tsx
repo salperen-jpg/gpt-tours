@@ -48,7 +48,7 @@ const SharedLayout = () => {
     <>
       <Navbar user={user} logout={logout} />
       <section className="align-element py-20 ">
-        {isPageLoading ? <>Loading...</> : <Outlet context={{ user }} />}
+        {isPageLoading ? <>Loading...</> : <Outlet context={{ user } as OutletUser}  />}
       </section>
     </>
   );

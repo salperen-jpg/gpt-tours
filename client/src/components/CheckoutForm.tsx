@@ -9,17 +9,16 @@ import { FaCheck } from "react-icons/fa6";
 import { toast } from "./ui/use-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { customFetch, Plan } from "@/utils";
-import { PlanResponse } from "@/pages/Checkout";
+import { CheckoutType } from "@/pages/Checkout";
 
 
-const CheckoutForm = ({selectedPlan}:{selectedPlan:Plan}) => {
+const CheckoutForm = ({selectedPlan,isSuccessed,setIsSuccessed}:{selectedPlan:Plan,isSuccessed:boolean,setIsSuccessed:(a:boolean)=>void}) => {
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState<null | string | undefined>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessed,setIsSuccessed]=useState(false);
   const navigate=useNavigate();
-  const {plan}=useLoaderData() as PlanResponse
+  const {plan}=useLoaderData() as CheckoutType;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,16 +47,22 @@ const CheckoutForm = ({selectedPlan}:{selectedPlan:Plan}) => {
     setIsLoading(false);
   };
 
+    if(isSuccessed){
+      return <article className="flex justify-center w-full items-center">
+       <div className='mb-4 flex flex-col items-center justify-center  gap-y-3'>
+         <span className="h-[3rem] w-[3rem]  text-blue-300 bg-green-400	rounded-full grid place-items-center">
+          <FaCheck className="text-3xl text-white" />
+          </span>
+        <h4>Thank you!</h4>
+        <h4>Your payment was successful!</h4>
+        <h4>Redirecting to home page shortly</h4>
+       </div>
+    </article>
+    }
+    
+
   return (
   <>
-  {isSuccessed && <article className="mb-4 flex flex-col items-center gap-y-3">
-    <span className="h-[3rem] w-[3rem]  text-blue-300 bg-green-400	rounded-full grid place-items-center">
-      <FaCheck className="text-3xl text-white" />
-      </span>
-    <h4>Thank you!</h4>
-    <h4>Your payment was successful!</h4>
-    <h4>Redirecting to home page shortly</h4>
-  </article>}
    <form id="payment-form" onSubmit={handleSubmit} >
       <PaymentElement id="payment-element"  />
       <Button  disabled={isLoading || !stripe || !elements} id="submit" className="mt-4 w-full ">

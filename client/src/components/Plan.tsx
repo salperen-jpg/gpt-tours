@@ -8,11 +8,13 @@ import {
 import { Plan as PlanProp } from "@/utils";
 import { SiElement } from "react-icons/si";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { convertPrice } from "@/utils";
+import { CheckoutType } from "@/pages/Checkout";
 type PlanProps= PlanProp & {dashboard?:boolean}
 
 const Plan = ({ title, cost, tokens, description,dashboard }: PlanProps) => {
+  const{plan}=useLoaderData() as CheckoutType;
   return (
     <Card>
       <CardHeader>
@@ -32,8 +34,8 @@ const Plan = ({ title, cost, tokens, description,dashboard }: PlanProps) => {
       </CardContent>
       <CardFooter className="flex justify-center">
        {
-        dashboard  ? title ==='Starter' ? <Button disabled >Active</Button> : <Button asChild>
-          <Link to={`/dashboard/checkout/${title}`}>Get the plan</Link>
+        dashboard  ? title ==='Starter' ? null : <Button  disabled={plan.title===title} >
+          <Link to={`/dashboard/checkout/${title}`} >{plan.title===title? 'Current Plan':'Get the Plan'}</Link>
           </Button> :  <Button asChild>
           <Link to="/login">Get Started</Link>
         </Button>

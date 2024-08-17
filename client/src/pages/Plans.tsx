@@ -1,9 +1,10 @@
 import { Plan, SectionTitle } from "@/components"
 import { plans } from "@/utils"
-import {useOutletContext } from "react-router-dom";
+
 
 const Plans = () => {
- const {user}=useOutletContext()
+ 
+
   return (
     <section className="h-[calc(100vh-5rem)]">
      <SectionTitle title="Plans" />
