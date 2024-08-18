@@ -37,3 +37,11 @@ export type User = {
   location: string;
   role: string;
 };
+
+export type Plan={
+  _id?:string;
+  title:string,
+  cost:number |string,
+  tokens:number,
+  description:string
+}

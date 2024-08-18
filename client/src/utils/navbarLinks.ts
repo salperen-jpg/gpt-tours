@@ -27,6 +27,12 @@ export const links: Link[] = [
     path: "profile",
     label: "profile",
   },
+ {
+    id: nanoid(),
+    path: "plans",
+    label: "plans",
+  }
+  
   // {
   //   id: nanoid(),
   //   path: "calendar",

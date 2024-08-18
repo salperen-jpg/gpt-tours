@@ -1,25 +1,33 @@
 import { BreadCrumb, FormInput, TokenAmount } from "@/components";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { customFetch } from "@/utils";
+import { customFetch, Plan } from "@/utils";
 import { AxiosError } from "axios";
 import {
   ActionFunction,
   Form,
   LoaderFunction,
+  useLoaderData,
   useOutletContext,
 } from "react-router-dom";
 import { useNavigation } from "react-router-dom";
 import { OutletUser } from "./SharedLayout";
+import { PlanResponse } from "./Checkout";
 
-export type Token = {
-  tokenAmount: number;
-};
+export type Token={
+  tokenAmount:number
+}
+export type CurrentPlan={
+  currentPlan:Plan
+}
 
-export const loader: LoaderFunction = async (): Promise<Token | null> => {
+export type LoaderReturn = Token & CurrentPlan;
+
+export const loader: LoaderFunction = async (): Promise<LoaderReturn | null> => {
   try {
     const response = await customFetch.get<Token>("/token");
-    return response.data;
+    const currentPlanResp= await customFetch.get<PlanResponse>('/plans/current-user-plan');
+    return {tokenAmount:response.data.tokenAmount,currentPlan:currentPlanResp.data.plan}
   } catch (error) {
     toast({ description: "something went wrong with token amount!" });
     return null;
@@ -44,6 +52,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 const Profile = () => {
   const { user } = useOutletContext() as OutletUser;
+  const {currentPlan}=useLoaderData() as LoaderReturn;
   const { name, lastName, email, location } = user;
   const isSubmitted = useNavigation().state === "submitting";
 
@@ -51,6 +60,7 @@ const Profile = () => {
     <>
       <BreadCrumb currentPage="Profile" />
       <section>
+        <h3 className="text-2xl font-bold mb-4">{currentPlan.title} plan</h3>
         <TokenAmount />
         <Form
           method="post"
