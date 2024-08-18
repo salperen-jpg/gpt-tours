@@ -40,7 +40,6 @@ export const loader :LoaderFunction= async ()=>{
 
 const Checkout = () => {
   const {allPlans}=useLoaderData() as CheckoutType;
-  console.log(allPlans);
   const {plan}=useParams<{plan:string}>();
   const selectedPlan=allPlans.find(p=> p.title===plan)!;
   const {theme}=useDashboardContext();
@@ -94,6 +93,9 @@ const Checkout = () => {
   return (
     <section>
       <SectionTitle title="Checkout"/>
+      <Button asChild className="mb-4" variant="secondary">
+        <Link to='/dashboard'>Cancel</Link>
+      </Button>
       {error.show &&  <div className="h-[30vh] grid place-items-center">
         <div className="flex flex-col justify-center items-center gap-y-4 bg-secondary p-16 rounded-md">
                     <RiAlarmWarningFill className="text-4xl warning" />
