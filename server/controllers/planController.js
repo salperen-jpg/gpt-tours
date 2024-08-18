@@ -12,14 +12,12 @@ const stripeInstant=stripe(process.env.STRIPE_SECRET_KEY);
 
 const getAllPlans= async(req,res)=>{
   const allPlans= await AllPlans.find();
-  console.log(allPlans);
   res.status(StatusCodes.OK).json({allPlans})
 }
 
 // attach with admin route , admin can see all the tariffs associated to user.
 const getPlans = async (req, res) => {
   const plans = await Plan.find({});
-  console.log(plans);
   res.json({ plans });
 };
 
