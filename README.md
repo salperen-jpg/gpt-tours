@@ -12,10 +12,10 @@ Imagine exploring a new city, museum, or even your local park with a personal gu
 
 ## 📍 Key Features
  
-`Seamless Tour Creation`: Easily set up tours with customizable stops and narratives. Just provide us the city and country name.
-`AI-Driven Interactions`: Engage with a sophisticated AI that adapts to the context of the tour and user inquiries.
-`Flexible Use Cases`: Ideal for tourism, education, virtual experiences, and more.
-`User-Friendly Interface`: Simple and intuitive design that makes tour creation and interaction effortless.
+- `Seamless Tour Creation`: Easily set up tours with customizable stops and narratives. Just provide us the city and country name.
+- `AI-Driven Interactions`: Engage with a sophisticated AI that adapts to the context of the tour and user inquiries.
+- `Flexible Use Cases`: Ideal for tourism, education, virtual experiences, and more.
+- `User-Friendly Interface`: Simple and intuitive design that makes tour creation and interaction effortless.
 
 ## 📍 What is coming next ?
 
