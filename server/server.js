@@ -10,14 +10,8 @@ import path from "path";
 // middlewares
 import { notFound } from "./errors/notFound.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
-import { authMiddleware } from "./middlewares/authMiddleware.js";
 // routes
-import tourRoute from "./routes/tourRoute.js";
-import authRoute from "./routes/authRoute.js";
-import userRoute from "./routes/userRoute.js";
-import queryRoute from "./routes/queryRoute.js";
-import tokenRoute from "./routes/tokenRoute.js";
-import planRoute from "./routes/planRoute.js";
+import router from "./routes/index.js";
 
 const app = express();
 
@@ -35,12 +29,7 @@ if ((process.env.NODE_ENV = "development")) app.use(morgan("dev"));
 const PORT = process.env.PORT || 5000;
 
 // ROUTES
-app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/tours", authMiddleware, tourRoute);
-app.use("/api/v1/user", authMiddleware, userRoute);
-app.use("/api/v1/queries", queryRoute);
-app.use("/api/v1/plans", planRoute);
-app.use("/api/v1/token", authMiddleware, tokenRoute);
+app.use('/api/v1',router);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
