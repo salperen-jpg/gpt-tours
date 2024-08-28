@@ -6,6 +6,7 @@ import {
   Checkout,
   Error,
   Landing,
+  Layout,
   Login,
   NewTour,
   Plans,
@@ -27,10 +28,11 @@ import { loader as sharedLayoutLoader } from "./pages/SharedLayout";
 import { loader as toursLoader } from "./pages/Tours";
 import { loader as singleTourLoader } from "./pages/SingleTour";
 import { loader as tokenLoader } from "./pages/Profile";
-import { loader as  checkoutLoader} from './pages/Checkout';
-import { loader as  landingLoader} from './pages/Landing';
+import { loader as checkoutLoader } from "./pages/Checkout";
+import { loader as landingLoader } from "./pages/Landing";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ErrorElement } from "./components";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,70 +45,79 @@ export const queryClient = new QueryClient({
 function App() {
   const router = createBrowserRouter([
     {
-      path: "register",
-      element: <Register />,
-      errorElement: <Error />,
-      action: registerAction,
-    },
-    {
-      path: "login",
-      element: <Login />,
-      errorElement: <Error />,
-      action: loginAction,
-    },
-    {
       path: "/",
-      element: <Landing />,
+      element: <Layout />,
       errorElement: <Error />,
-      action: landingAction,
-      loader: landingLoader
-    },
-    {
-      path: "dashboard",
-      element: <SharedLayout />,
-      errorElement: <Error />,
-      loader: sharedLayoutLoader,
       children: [
         {
           index: true,
-          element: <Tours />,
-          loader: toursLoader,
+          element: <Landing />,
+          errorElement: <ErrorElement />,
+          action: landingAction,
+          loader: landingLoader,
         },
         {
-          path: "chat",
-          element: <Chat />,
-          loader: tokenLoader,
+          path: "register",
+          element: <Register />,
+          action: registerAction,
         },
         {
-          path: "newTour",
-          element: <NewTour />,
-          action: newTourAction(queryClient),
+          path: "login",
+          element: <Login />,
+          action: loginAction,
         },
         {
-          path: "tours/:id",
-          element: <SingleTour />,
-          loader: singleTourLoader,
+          path: "dashboard",
+          element: <SharedLayout />,
+          loader: sharedLayoutLoader,
+          children: [
+            {
+              index: true,
+              element: <Tours />,
+              loader: toursLoader,
+            },
+            {
+              path: "chat",
+              element: <Chat />,
+              loader: tokenLoader,
+              errorElement: <ErrorElement />,
+            },
+            {
+              path: "newTour",
+              element: <NewTour />,
+              action: newTourAction(queryClient),
+              errorElement: <ErrorElement />,
+            },
+            {
+              path: "tours/:id",
+              element: <SingleTour />,
+              loader: singleTourLoader,
+            },
+            {
+              path: "tours/deleteTour/:id",
+              action: deleteTourAction,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+              action: profileAction,
+              loader: tokenLoader,
+              errorElement: <ErrorElement />,
+            },
+            {
+              path: "plans",
+              element: <Plans />,
+              loader: checkoutLoader,
+              errorElement: <ErrorElement />,
+            },
+            {
+              path: "checkout/:plan",
+              element: <Checkout />,
+              loader: checkoutLoader,
+              errorElement: <ErrorElement />,
+            },
+          ],
         },
-        {
-          path: "tours/deleteTour/:id",
-          action: deleteTourAction,
-        },
-        {
-          path: "profile",
-          element: <Profile />,
-          action: profileAction,
-          loader: tokenLoader,
-        },
-        {
-          path: "plans",
-          element: <Plans />,
-          loader:checkoutLoader
-        },
-        {
-          path: "checkout/:plan",
-          element: <Checkout />,
-          loader: checkoutLoader
-        }
       ],
     },
   ]);

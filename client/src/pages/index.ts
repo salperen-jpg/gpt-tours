@@ -10,4 +10,5 @@ export { default as Chat } from "./Chat";
 export { default as NewTour } from "./NewTour";
 export { default as DeleteTour } from "./DeleteTour";
 export { default as Plans } from "./Plans";
-export {default as Checkout} from "./Checkout";
+export { default as Checkout } from "./Checkout";
+export { default as Layout } from "./Layout";
