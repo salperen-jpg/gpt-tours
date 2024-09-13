@@ -53,7 +53,7 @@ const Chat = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!text) toast({ description: "please enter a value" });
-    const query = {
+    const query: ChatMessage = {
       role: "user",
       content: text,
     };
