@@ -1,20 +1,49 @@
-import { body, param, validationResult } from "express-validator";
+import {
+  body,
+  param,
+  ValidationChain,
+  validationResult,
+} from "express-validator";
 import { BadRequestError, UnauthorizedError } from "../errors/customErrors.js";
 import User from "../models/userModel.js";
 import mongoose from "mongoose";
 import Tour from "../models/tourModel.js";
+import { NextFunction, Request, RequestHandler, Response } from "express";
 
-export const validatorMiddleware = (validatorChain) => [
-  validatorChain,
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      const errorMessages = errors.array().map((err) => err.msg);
-      throw new BadRequestError(errorMessages);
-    }
-    next();
-  },
-];
+// export const validatorMiddleware = (
+//   validatorChain: ValidationChain[] | ValidationChain
+// ) => [
+//   validatorChain,
+//   (req: Request, res: Response, next: NextFunction) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       const errorMessages = errors.array().map((err) => err.msg);
+//       throw new BadRequestError(errorMessages.toString());
+//     }
+//     next();
+//   },
+// ];
+
+const validateRequest: RequestHandler = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map((err) => err.msg);
+    throw new BadRequestError(errorMessages.join(", "));
+  }
+  next();
+};
+
+export const validatorMiddleware = (
+  validatorChain: ValidationChain | ValidationChain[]
+): RequestHandler[] => {
+  // Spread the validatorChain if it's an array or convert it to an array if it's a single ValidationChain
+  const chainArray = Array.isArray(validatorChain)
+    ? validatorChain
+    : [validatorChain];
+
+  // Return the spread of chains followed by the validateRequest handler
+  return [...chainArray, validateRequest];
+};
 
 // AUTH ROUTES
 export const registerValidator = validatorMiddleware([
@@ -26,7 +55,7 @@ export const registerValidator = validatorMiddleware([
     .withMessage("email can not be empty")
     .isEmail()
     .withMessage("invalid email format")
-    .custom(async (email) => {
+    .custom(async (email: string) => {
       const isEmailInUse = await User.findOne({ email: email });
       if (isEmailInUse) {
         throw new BadRequestError("email already in use");
@@ -65,11 +94,11 @@ export const updateTourValidator = validatorMiddleware([
 ]);
 
 export const validateIdParam = validatorMiddleware([
-  param("id").custom(async (id, { req }) => {
+  param("id").custom(async (id: string, { req }) => {
     const isValidId = mongoose.Types.ObjectId.isValid(id);
     if (!isValidId) throw new BadRequestError("invalid MongoDB id");
     const tour = await Tour.findById(id);
-    const isOwner = req.user.userId === tour.createdBy.toString();
+    const isOwner = req.user.userId === tour!.createdBy!.toString();
     if (!isOwner) throw new UnauthorizedError("not authorized to access!");
   }),
 ]);
@@ -82,7 +111,7 @@ export const updateUserValidator = validatorMiddleware([
     .withMessage("email can not be empty!")
     .isEmail()
     .withMessage("invalid email format")
-    .custom(async (email, { req }) => {
+    .custom(async (email: string, { req }) => {
       const user = await User.findOne({ email });
       if (user && user._id.toString() !== req.user.userId) {
         throw new BadRequestError("email already in use");

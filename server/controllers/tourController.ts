@@ -1,12 +1,29 @@
 import Tour from "../models/tourModel.js";
 import { StatusCodes } from "http-status-codes";
+import { RequestHandler } from "express";
+import { CustomRequestWithUser } from "./authController.js";
+import { ParsedQs } from "qs";
+
+interface QueryParams {
+  createdBy: string;
+  $or?: Array<{
+    [key: string]: { $regex: string | string[]; $options: string };
+  }>;
+}
 
 // GET TOURS
-const getAllTours = async (req, res) => {
+const getAllTours: RequestHandler = async (req, res) => {
   // start with query params;
-  const { title, city, country, sort } = req.query;
-  const queryParamsObject = {
-    createdBy: req.user.userId,
+  // const { title, city, country, sort } = req.query;
+  const { title, city, country, sort } = req.query as {
+    title?: string | string[];
+    city?: string | string[];
+    country?: string | string[];
+    sort?: string;
+  };
+
+  const queryParamsObject: QueryParams = {
+    createdBy: (req as CustomRequestWithUser).user.userId,
   };
   // if city  passed
   if (title) {
@@ -32,7 +49,7 @@ const getAllTours = async (req, res) => {
     ];
   }
   // sorting
-  const sortOptions = {
+  const sortOptions: { [key: string]: string } = {
     "a-z": "title",
     "z-a": "-title",
     newest: "-createdAt",
@@ -62,20 +79,20 @@ const getAllTours = async (req, res) => {
 };
 
 // POST TOUR
-const createTour = async (req, res) => {
-  req.body.createdBy = req.user.userId;
+const createTour: RequestHandler = async (req, res) => {
+  req.body.createdBy = (req as CustomRequestWithUser).user.userId;
   await Tour.create(req.body);
   res.status(StatusCodes.CREATED).json({ msg: "Created successfully!" });
 };
 
 // GET TOUR
-const getTour = async (req, res) => {
+const getTour: RequestHandler = async (req, res) => {
   const tour = await Tour.findById(req.params.id);
   res.status(StatusCodes.OK).json({ tour });
 };
 
 // UPDATE TOUR
-const updateTour = async (req, res) => {
+const updateTour: RequestHandler = async (req, res) => {
   const newTourBody = req.body;
   await Tour.findByIdAndUpdate(req.params.id, newTourBody, {
     new: true,
@@ -84,18 +101,18 @@ const updateTour = async (req, res) => {
 };
 
 // DELETE TOUR
-const deleteTour = async (req, res) => {
+const deleteTour: RequestHandler = async (req, res) => {
   await Tour.findByIdAndDelete(req.params.id);
   res.status(StatusCodes.OK).json({ msg: "Deleted successfully!" });
 };
 
-export const getTourByCityAndCountry = async (req, res) => {
+export const getTourByCityAndCountry: RequestHandler = async (req, res) => {
   let { city, country } = req.params;
 
   const tour = await Tour.findOne({
     city,
     country,
-    createdBy: req.user.userId,
+    createdBy: (req as CustomRequestWithUser).user.userId,
   });
 
   if (tour) {

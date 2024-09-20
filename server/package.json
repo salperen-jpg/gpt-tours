@@ -5,11 +5,12 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon --watch server --exec \"node --loader ts-node/esm\" server.ts",
     "setup": "npm i && cd ../client && npm i",
     "deployment-build": "npm run setup && cd ../client && npm run build",
     "startClient": "cd ../client && npm run dev",
-    "start": "conc \"npm run dev\" \"npm run startClient\""
+    "start": "conc \"npm run dev\" \"npm run startClient\"",
+    "serve": "tsc -w && nodemon dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,15 @@
     "stripe": "^16.5.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/mongoose": "^5.11.96",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.5.5",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
   }
 }

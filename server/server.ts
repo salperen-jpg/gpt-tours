@@ -29,7 +29,7 @@ if ((process.env.NODE_ENV = "development")) app.use(morgan("dev"));
 const PORT = process.env.PORT || 5000;
 
 // ROUTES
-app.use('/api/v1',router);
+app.use("/api/v1", router);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
@@ -40,7 +40,7 @@ app.use(notFound);
 app.use(errorHandlerMiddleware);
 
 try {
-  await connectDB(process.env.MONGO_URI);
+  await connectDB(process.env.MONGO_URI!);
   app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
   });
