@@ -8,21 +8,7 @@ import { BadRequestError, UnauthorizedError } from "../errors/customErrors.js";
 import User from "../models/userModel.js";
 import mongoose from "mongoose";
 import Tour from "../models/tourModel.js";
-import { NextFunction, Request, RequestHandler, Response } from "express";
-
-// export const validatorMiddleware = (
-//   validatorChain: ValidationChain[] | ValidationChain
-// ) => [
-//   validatorChain,
-//   (req: Request, res: Response, next: NextFunction) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       const errorMessages = errors.array().map((err) => err.msg);
-//       throw new BadRequestError(errorMessages.toString());
-//     }
-//     next();
-//   },
-// ];
+import { RequestHandler } from "express";
 
 const validateRequest: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
