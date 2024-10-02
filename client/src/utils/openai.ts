@@ -56,6 +56,7 @@ Once you have a list, create a one-day tour. Response should be in the following
     "title": "title of the tour",
     "description": "short description of the city and tour",
     "stops": ["stop name , some information", "stop name , some information","stop name ,some information"]
+    "stopNames":["city,stop name","city,stop name", "city,stop name"]
   }
 }
 "stops" property should include only three stops with strings.
