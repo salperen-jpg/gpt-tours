@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
+import "leaflet/dist/leaflet.css";
 // pages
 import {
   Chat,
