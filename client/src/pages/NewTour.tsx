@@ -12,6 +12,7 @@ import {
   Tour,
   TourResponse,
   capitalizeCityAndCountry,
+  convertToLatitudeAndLongitude,
   createNewTour,
   customFetch,
   generateImage,
@@ -47,6 +48,10 @@ export const action =
       }
       const tourImage = await generateImage({ query: country });
       generateNewTourAI.tour!.image = tourImage as string;
+      const locations = await convertToLatitudeAndLongitude(
+        generateNewTourAI.tour!.stopNames
+      );
+      if (locations) generateNewTourAI.tour!.locations = locations;
       await customFetch.post("/tours", generateNewTourAI.tour);
       const { total_tokens } = generateNewTourAI;
       const { data } = await customFetch.patch<{ msg: string; token: number }>(

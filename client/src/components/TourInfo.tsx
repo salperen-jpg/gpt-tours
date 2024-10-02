@@ -3,6 +3,7 @@ import { MdTour } from "react-icons/md";
 import { Button } from "./ui/button";
 import { Form } from "react-router-dom";
 import PhotoGallery from "./PhotoGallery";
+import Map from "./Map";
 
 type TourInfoProps = {
   tourInfo: TourResponse;
@@ -15,7 +16,17 @@ const TourInfo = ({
   photoGallery,
   isComingFromSingleTourPage,
 }: TourInfoProps) => {
-  const { _id, city, description, stops, title, country, image } = tourInfo;
+  const {
+    _id,
+    city,
+    description,
+    stops,
+    title,
+    country,
+    image,
+    locations,
+    stopNames,
+  } = tourInfo;
   return (
     <>
       <h1 className="mb-8 text-primary text-2xl tracking-wide">
@@ -53,6 +64,9 @@ const TourInfo = ({
           </div>
         </div>
       </section>
+      <article className="mt-16">
+        <Map locations={locations} stopNames={stopNames} />
+      </article>
       {isComingFromSingleTourPage && (
         <Form
           method="POST"
