@@ -6,36 +6,27 @@ interface NominatimResponse {
   display_name: string;
 }
 
-interface Fetched {
+interface FetchedLatitudeAndLongitude {
   data: NominatimResponse[];
 }
 
 export const convertToLatitudeAndLongitude = async (stopNames: string[]) => {
-  const promiseFactory: Promise<Fetched>[] = [
-    axios(
-      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-        stopNames[0]
-      )}&format=json`
-    ),
-    axios(
-      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-        stopNames[1]
-      )}&format=json`
-    ),
-    axios(
-      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-        stopNames[2]
-      )}&format=json`
-    ),
-  ];
+  const promiseFactory: Promise<FetchedLatitudeAndLongitude>[] = stopNames.map(
+    (stopName) =>
+      axios(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+          stopName
+        )}&format=json`
+      )
+  );
   try {
     const response = await Promise.allSettled(promiseFactory);
     const locations: number[][] = response
       .map((answers) => {
         if (answers.status === "fulfilled") {
           return [
-            +answers.value?.data?.[0]?.lat || 0,
-            +answers.value?.data?.[0]?.lon || 0,
+            +answers.value.data?.[0].lat || 0,
+            +answers.value.data?.[0].lon || 0,
           ];
         } else {
           return false;
