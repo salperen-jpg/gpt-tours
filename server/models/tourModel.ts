@@ -15,6 +15,8 @@ const tourSchema = new mongoose.Schema(
       required: false,
     },
     stops: [String],
+    locations: [[Number]],
+    stopNames: [String],
   },
   {
     timestamps: true,
