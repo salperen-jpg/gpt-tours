@@ -20,6 +20,8 @@ export type Tour = {
   description: string;
   stops: string[];
   image: string | null;
+  stopNames: string[];
+  locations?: number[][];
 };
 
 export type TourResponse = {
