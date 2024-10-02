@@ -7,4 +7,5 @@ export * from "./popularTours";
 export * from "./services";
 export * from "./helpers";
 export * from "./plans";
-export * from './price';
+export * from "./price";
+export * from "./geolocation";
