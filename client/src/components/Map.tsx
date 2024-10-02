@@ -6,9 +6,9 @@ type MapProps = {
 };
 
 const Map = ({ locations, stopNames }: MapProps) => {
-  const center: [number, number] = [
-    locations?.[0][0] ?? locations?.[1][0] ?? 0,
-    locations?.[0][1] ?? locations?.[1][1] ?? 0,
+  const center = locations?.find((location) => location[0] && location[1]) as [
+    number,
+    number
   ];
   return (
     <article className="max-w-4xl mt-[3rem] mx-auto border-solid border-6 rounded-sm">
