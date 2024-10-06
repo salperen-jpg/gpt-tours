@@ -11,33 +11,40 @@ const Map = ({ locations, stopNames }: MapProps) => {
     number
   ];
   return (
-    <article className="max-w-4xl mt-[3rem] mx-auto border-solid border-6 rounded-sm">
-      <MapContainer
-        center={center}
-        zoom={13}
-        style={{ height: "400px", width: "100%" }}
-        className="border-solid border-2 rounded-md "
+    <section>
+      <h2 className="text-primary font-semibold tracking-wide text-xl">
+        Locations
+      </h2>
+      <article
+        className="max-w-2xl mt-[2rem] border-4 border-primary rounded-s"
+        onClick={() => console.log("hi there")}
       >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          className="border-solid border-2 rounded-md"
-        />
-        {locations
-          ?.filter((loc) => !(loc[0] === 0 && loc[1] === 0))
-          .map((location, index) => {
-            return (
-              <Marker
-                key={index}
-                position={[+location[0] || 0, +location[1] || 0]}
-              >
-                <Popup>
-                  <h3>{stopNames?.[index] ?? ""}</h3>
-                </Popup>
-              </Marker>
-            );
-          })}
-      </MapContainer>
-    </article>
+        <MapContainer
+          center={center}
+          zoom={13}
+          style={{ height: "30rem", width: "100%" }}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            className="border-solid border-2 rounded-md"
+          />
+          {locations
+            ?.filter((loc) => !(loc[0] === 0 && loc[1] === 0))
+            .map((location, index) => {
+              return (
+                <Marker
+                  key={index}
+                  position={[+location[0] || 0, +location[1] || 0]}
+                >
+                  <Popup>
+                    <h3>{stopNames?.[index] ?? ""}</h3>
+                  </Popup>
+                </Marker>
+              );
+            })}
+        </MapContainer>
+      </article>
+    </section>
   );
 };
 export default Map;
