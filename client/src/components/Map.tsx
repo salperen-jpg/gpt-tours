@@ -15,10 +15,7 @@ const Map = ({ locations, stopNames }: MapProps) => {
       <h2 className="text-primary font-semibold tracking-wide text-xl">
         Locations
       </h2>
-      <article
-        className="max-w-2xl mt-[2rem] border-4 border-primary rounded-s"
-        onClick={() => console.log("hi there")}
-      >
+      <article className="max-w-2xl mt-[2rem] border-4 border-primary rounded-s">
         <MapContainer
           center={center}
           zoom={13}
