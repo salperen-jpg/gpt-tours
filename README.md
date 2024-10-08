@@ -11,7 +11,7 @@ Imagine exploring a new city, museum, or even your local park with a personal gu
 1. Interactive AI Conversations: Beyond just following a tour, users can engage in real-time conversations with the AI. Ask questions, get insights, or just have a chat—our AI is here to make the experience richer and more engaging.
 
 ## 📍 Key Features
- 
+
 - `Seamless Tour Creation`: Easily set up tours with customizable stops and narratives. Just provide us the city and country name.
 - `AI-Driven Interactions`: Engage with a sophisticated AI that adapts to the context of the tour and user inquiries.
 - `Flexible Use Cases`: Ideal for tourism, education, virtual experiences, and more.
@@ -44,11 +44,8 @@ This application is built with state-of-the-art technologies, combining advanced
 - OpenAI
 - Pexels
 - React Router Dom
-- TailwindCSS 
+- TailwindCSS
 - Shadcn
 - Vite
 
-
-
-
-
+![Alternative design](/assets/alternative.png)
