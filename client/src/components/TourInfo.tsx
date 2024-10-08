@@ -4,6 +4,13 @@ import { Button } from "./ui/button";
 import { Form } from "react-router-dom";
 import PhotoGallery from "./PhotoGallery";
 import Map from "./Map";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 type TourInfoProps = {
   tourInfo: TourResponse;
@@ -62,11 +69,23 @@ const TourInfo = ({
               })}
             </ul>
           </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">Locations</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[50%]">
+              <DialogHeader>
+                <DialogTitle className="text-primary tracking-wider text-xl">
+                  Locations
+                </DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <Map locations={locations} stopNames={stopNames} />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
-      <article className="mt-16">
-        <Map locations={locations} stopNames={stopNames} />
-      </article>
       {isComingFromSingleTourPage && (
         <Form
           method="POST"

@@ -12,10 +12,7 @@ const Map = ({ locations, stopNames }: MapProps) => {
   ];
   return (
     <section>
-      <h2 className="text-primary font-semibold tracking-wide text-xl">
-        Locations
-      </h2>
-      <article className="max-w-2xl mt-[2rem] border-4 border-primary rounded-s">
+      <article className="border-4 border-primary rounded-s">
         <MapContainer
           center={center}
           zoom={13}
