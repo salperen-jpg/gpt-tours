@@ -30,7 +30,7 @@ const plans = [
 const populate = async () => {
   // connect db first
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.MONGO_URI!);
     await AllPlan.deleteMany({});
     await AllPlan.create(plans);
     process.exit(0);
