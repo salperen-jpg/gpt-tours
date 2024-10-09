@@ -23,7 +23,7 @@ export const convertToLatitudeAndLongitude = async (stopNames: string[]) => {
     const response = await Promise.allSettled(promiseFactory);
     const locations: number[][] = response
       .map((answers) => {
-        if (answers.status === "fulfilled") {
+        if (answers.status === "fulfilled" && answers.value.data.length > 1) {
           return [
             +answers.value.data?.[0].lat || 0,
             +answers.value.data?.[0].lon || 0,
