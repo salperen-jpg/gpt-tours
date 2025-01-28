@@ -1,4 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
 type MapProps = {
   locations: number[][] | undefined;
