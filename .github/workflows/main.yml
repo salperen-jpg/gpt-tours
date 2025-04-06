@@ -22,10 +22,6 @@ jobs:
         with:
           node-version: "20"
 
-      # Repeating in the next step remove later on
-      - name: Install all dependencies
-        run: npm run setup
-
       - name: Build the application
         run: npm run deployment-build
 
