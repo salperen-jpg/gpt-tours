@@ -1,0 +1,26 @@
+name: Deploy the project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install all dependencies
+        run: npm run setup
