@@ -30,7 +30,7 @@ jobs:
         run: npm run deployment-build
 
       - name: Deploy application to RENDER
-        if: github.ref== 'refs/heads/main'
+        if: github.ref== 'refs/heads/ci-cd'
         env:
           deploy_url: ${{secrets.RENDER_DEPLOY_HOOK_URL}}
         run: curl "$deploy_url"
