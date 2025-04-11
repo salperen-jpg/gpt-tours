@@ -3,7 +3,9 @@ name: Deploy the project
 on:
   push:
     branches:
-      - ci-cd
+      - main
+  pull_request:
+    branches: main
 
 jobs:
   build-and-deploy:
@@ -26,7 +28,7 @@ jobs:
         run: npm run deployment-build
 
       - name: Deploy application to RENDER
-        if: github.ref== 'refs/heads/ci-cd'
+        if: github.ref== 'refs/heads/main'
         env:
           deploy_url: ${{secrets.RENDER_DEPLOY_HOOK_URL}}
         run: curl "$deploy_url"
