@@ -1,0 +1,32 @@
+services:
+  - type: web
+    plan: free
+    name: tours
+    runtime: node
+    branch: main
+    rootDir: server
+    buildCommand: npm run deployment-build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_KEY
+        sync: false
+      - key: PORT
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: EXPIRES_IN
+        sync: false
+      - key: INITIAL_TOKEN_AMOUNT
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: VITE_OPENAI_API_KEY
+        sync: false
+      - key: VITE_PEXELS_API_KEY
+        sync: false
+      - key: VITE_STRIPE_PUBLISHABLE_KEY
+        sync: false
