@@ -24,9 +24,6 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Build the application
-        run: npm run deployment-build
-
       - name: Deploy application to RENDER
         if: github.ref== 'refs/heads/main'
         env:
