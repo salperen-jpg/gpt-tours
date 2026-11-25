@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export type TokenWithMessage = ChatMessage & { total_tokens: number };
 
 export const chatResponse = async (
-  chatMessages: ChatMessage[]
+  chatMessages: ChatMessage[],
 ): Promise<ChatMessage | TokenWithMessage | null> => {
   try {
     const completion = await openai.chat.completions.create({
@@ -17,9 +17,9 @@ export const chatResponse = async (
         { role: "system", content: "You are a helpful assistant." },
         ...(chatMessages as OpenAI.Chat.Completions.ChatCompletionMessageParam[]),
       ],
-      model: "gpt-3.5-turbo",
-      temperature: 0,
-      max_tokens: 100,
+      model: "gpt-6-luna",
+      temperature: 1,
+      max_completion_tokens: 100,
     });
     return {
       content: completion.choices[0].message.content,
@@ -67,8 +67,8 @@ If you can't find info on exact ${city}, or ${city} does not exist, or it's popu
         { role: "system", content: "You will be my guide in my next journey!" },
         { role: "user", content: tourPrompt },
       ],
-      model: "gpt-3.5-turbo",
-      temperature: 0,
+      model: "gpt-6-luna",
+      temperature: 1,
     });
     const tourData: AITourResponse = completion.choices[0].message.content
       ? JSON.parse(completion.choices[0].message.content)
