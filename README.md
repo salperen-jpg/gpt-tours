@@ -41,9 +41,11 @@ This application is built with state-of-the-art technologies, combining advanced
 
 **Frontend**
 
+- React/Tanstack Query
 - OpenAI
 - Pexels
 - React Router Dom
+- Leaflet
 - TailwindCSS
 - Shadcn
 - Vite
